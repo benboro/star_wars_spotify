@@ -1,0 +1,223 @@
+---
+title: "Star Wars Music Analysis Using Spotify API"
+author: "Ben Borovinsky"
+date: "October 15, 2020"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<!-- styling for shiny-frame output (centers iframe) -->
+```{css, echo=FALSE} 
+.shiny-frame {
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+```
+
+It's no secret that Star Wars has a massive following. What began as a space opera in 1977 evolved into a universe that is impossible to avoid. Star Wars has expanded from a cult following to being a significnat part of culture and media.
+
+There are many elements that make Star Wars what it is. The iconic characters, cringy dialogue, distinct planets, and, of course, the lightsabers, are all significant pieces that make up the successful franchise. In recent years, the movies themselves have been subject to criticism, but one thing has remained consistently posititve since the original trilogy: the music. John Williams has scored many iconic films, winning five academy awards and being nominated for 52 (second all-time behind Walt Disney). Williams is as synonymous with Star Wars as George Lucas, for he has scored every film in the Skywalker Saga (Episode I-IX). Like Vin Scully in the world of sports broadcasting, John Williams is the greatest film composer of all-time.
+
+I, like many other Star Wars fans, enjoy listening to John Williams outside of the movies. The music streaming application Spotify has been my medium of choice to listen to Williams' catalogue of Star Wars music, and I've listened to a lot of his music. At the end of 2019, Spotify released a personalized report of each user's listening habits, and the top two artists I listened to the most were John Williams and the London Symphony Orchestra.
+
+Spotify's analysis of my listening habits have encouraged me to do some analytics of my own. More specifically, I want to further analyze the music of Star Wars. While I do not have an academic backgound in music and I consider myself at best an amatuer at data analytics, I figured this would help me learn more about two things I am very passionate about: Star Wars music and data analytics.
+
+## Getting the Data
+
+In order to do an analysis, I need to get data. Thankfully, Spotify gives users access to its API, which makes the data acquisition relatively painless. Along with the information you would expect, the data from Spotify also includes metrics for each song to help give numerical values to the attributes of a song (this is probably how Spotify comes up with similar songs based on your listening habits or when you create a playlist); these metrics are danceability, energy, speechiness, acousticness, instrumentalness, liveness, and valence.
+
+The first step is to load in the libraries needed for this analysis.
+
+```{r, warning=FALSE, message=FALSE}
+library(dplyr)
+library(shiny)
+library(shinyWidgets)
+library(GGally)
+```
+
+The `dplyr` package provides resources for grammar and data manipulation, which helps make the code more readable overall. Both `shiny` and `shinyWidgets` are used to output R code as interactive web apps. Many beautiful graphs made from R code use the `ggplot2` package, and `GGally` includes this useful package along with other plots that the other does not have--such as the parallel coordinates plot.
+
+This analysis will not go in-depth about getting access to the API, but it isn't a difficult task and there are many tutorials online to help with that. I already retrieved, cleaned, and exported the music data from Spotify to a csv file, so importing data into R will take only one line.
+
+```{r}
+song_data <- read.csv("./data/song_data.csv", stringsAsFactors = FALSE)
+```
+
+## Cleaning the Data
+
+I still have some more cleaning to do before I start plotting the data.
+
+```{r}
+# select specific columns
+song_data <- song_data %>%
+    select(
+        track_name,
+        movie_title,
+        trilogy,
+        danceability:valence
+    )
+
+# get column number for spotify categories
+categories <- c("danceability", 
+                "energy", 
+                "speechiness", 
+                "acousticness", 
+                "instrumentalness", 
+                "liveness", 
+                "valence")
+cat_col <- which(colnames(song_data) %in% categories)
+
+# change type of data for these columns to preserve order of values for input selector
+song_data$trilogy <- factor(song_data$trilogy, levels = unique(song_data$trilogy))
+song_data$movie_title <- factor(song_data$movie_title, levels = unique(song_data$movie_title))
+song_data$track_name <- factor(song_data$track_name, levels = unique(song_data$track_name))
+```
+
+## Interactive Application
+
+To learn more, see [Interactive Documents](http://rmarkdown.rstudio.com/authoring_shiny.html).
+
+THIS SHOULD BE TWO PLOTS:
+1. CURRENT PLOT IS BACKGROUND AND IS ALWAYS THERE
+2. EACH SELECTION PULLS UP A HIGHLIGHTED, THICKER LINE
+
+```{r, echo=FALSE}
+# Define UI
+ui <- fluidPage(
+    
+    # Application title
+    #titlePanel("Star Wars X Spotify Analysis"),
+    
+    # Sidebar with dropdown input selectors
+    sidebarLayout(
+        sidebarPanel(
+          
+            selectizeGroupUI(
+                id = "my-filters",
+                inline = FALSE,
+                params = list(
+                    trilogy <- list(inputId = "trilogy", title = "Select Trilogy", placeholder = "select"),
+                    movie <- list(inputId = "movie_title", title = "Select Movie", placeholder = "select"),
+                    track <- list(inputId = "track_name", title = "Select Track", placeholder = "select")
+                )
+            )
+            
+        ),
+        
+        # Show a plot of the generated distribution
+        mainPanel(
+            
+            plotOutput(
+                outputId = "parallelcoordinates",
+                width = "100%",
+                height = "400px"
+            ),
+            br()
+            
+        )
+        
+    ),
+    
+    fluidRow(
+        
+        div(tableOutput("table"), style = "font-size: 90%")
+        
+    )
+    
+)
+
+
+# Define server logic required to draw a histogram
+server <- function(input, output) {
+    
+    res_mod <- callModule(
+        module = selectizeGroupServer,
+        id = "my-filters",
+        data = song_data,
+        vars = c("trilogy", "movie_title", "track_name")
+    )
+    
+    output$parallelcoordinates <- renderPlot({
+        
+        ggparcoord(res_mod(),
+                   columns=cat_col,
+                   groupColumn=ifelse(length(unique(res_mod()$movie_title))==1,"track_name","movie_title"),
+                   scale="globalminmax",
+                   showPoints=FALSE,
+                   alphaLines=0.5
+        ) +
+            theme_minimal() +
+            scale_x_discrete(expand = c(0,0)) +
+            scale_color_manual(values=rep(c("#2E66B1", "#E13028", "#188655",
+                                            "#B7ADB0", "#D79E2A", "#8956A3",
+                                            "#E9D84F", "#C60B36", "#49508D"),
+                                          length.out=nrow(res_mod()))) +
+            labs(x="",y="strength") +
+            theme(text = element_text(size = 16),
+                  legend.title = element_blank(),
+                  legend.text = element_text(size=10),
+                  axis.text.x = element_text(angle = 25, vjust = 0.7, hjust=0.7))
+        
+    })
+    
+    output$table <- renderTable({
+        
+        res_mod()
+        
+    }, striped = TRUE, hover = TRUE)
+    
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server, options = list(width="120%", height=700))
+```
+
+As I learn more about advanced techniques in data analysis, I would like to do more with this data (i.e. get a list of similar songs given a song input from the user). 
+
+## Inputs and Outputs
+
+You can embed Shiny inputs and outputs in your document. Outputs are automatically updated whenever inputs change.  This demonstrates how a standard R plot can be made interactive by wrapping it in the Shiny `renderPlot` function. The `selectInput` and `sliderInput` functions create the input widgets used to drive the plot.
+
+```{r eruptions, echo=FALSE}
+inputPanel(
+  selectInput("n_breaks", label = "Number of bins:",
+              choices = c(10, 20, 35, 50), selected = 20),
+  
+  sliderInput("bw_adjust", label = "Bandwidth adjustment:",
+              min = 0.2, max = 2, value = 1, step = 0.2)
+)
+
+renderPlot({
+  hist(faithful$eruptions, probability = TRUE, breaks = as.numeric(input$n_breaks),
+       xlab = "Duration (minutes)", main = "Geyser eruption duration")
+  
+  dens <- density(faithful$eruptions, adjust = input$bw_adjust)
+  lines(dens, col = "blue")
+})
+```
+
+## Embedded Application
+
+It's also possible to embed an entire Shiny application within an R Markdown document using the `shinyAppDir` function. This example embeds a Shiny application located in another directory:
+
+```{r tabsets, echo=FALSE}
+shinyAppDir(
+  system.file("examples/06_tabsets", package = "shiny"),
+  options = list(
+    width = "100%", height = 550
+  )
+)
+```
+
+Note the use of the `height` parameter to determine how much vertical space the embedded application should occupy.
+
+You can also use the `shinyApp` function to define an application inline rather then in an external directory.
+
+In all of R code chunks above the `echo = FALSE` attribute is used. This is to prevent the R code within the chunk from rendering in the document alongside the Shiny components.
+
+
+
