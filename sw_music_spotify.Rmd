@@ -142,7 +142,14 @@ server <- function(input, output) {
     )
     
     output$parallelcoordinates <- renderPlot({
-        
+      
+        ggparcoord(song_data,
+                   columns=cat_col,
+                   groupColumn="movie_title",
+                   scale="globalminmax",
+                   showPoints=FALSE,
+                   alphaLines=0.1)
+      
         ggparcoord(res_mod(),
                    columns=cat_col,
                    groupColumn=ifelse(length(unique(res_mod()$movie_title))==1,"track_name","movie_title"),
@@ -158,6 +165,7 @@ server <- function(input, output) {
                                           length.out=nrow(res_mod()))) +
             labs(x="",y="strength") +
             theme(text = element_text(size = 16),
+                  panel.background = element_rect(fill = "transparent", color = NA),
                   legend.title = element_blank(),
                   legend.text = element_text(size=10),
                   axis.text.x = element_text(angle = 25, vjust = 0.7, hjust=0.7))

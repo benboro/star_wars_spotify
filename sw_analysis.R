@@ -102,3 +102,15 @@ ggparcoord(df,
 
 # WRITE DATA TO CSV
 #write.csv(song_data,"./data/song_data.csv", row.names = FALSE)
+
+# t_sd <- song_data %>%
+#   reshape2::melt(id.vars=c("movie_title", "trilogy", "track_name"), measure.vars=categories)
+# t_od <- og_data %>%
+#   reshape2::melt(id.vars=c("movie_title", "trilogy", "track_name"), measure.vars=categories)
+# sd2 <- song_data
+# sd2$id <- 1:nrow(song_data)
+# t_sd2 <- sd2 %>%
+#   pivot_longer(cols = categories, 'name', 'value')
+# 
+# ggplot(t_sd2) +
+#   geom_line(aes(x=name, y=value, group=id))
