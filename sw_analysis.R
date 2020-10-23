@@ -45,7 +45,7 @@ song_data <- song_data %>%
 # ORGANIZE DATA
 song_data <- song_data[
   order(song_data$album_release_year, song_data$track_number),
-]
+  ]
 rownames(song_data) <- NULL
 
 # REORDER COLUMNS (OMIT album_release_date, key, mode)
@@ -76,7 +76,7 @@ categories <- c("danceability",
                 "valence")
 cat_col <- which(colnames(song_data) %in% categories)
 
-df <- og_data[og_data$episode==4,]
+#df <- og_data[og_data$episode==4,]
 
 # ggparcoord(df,
 #   columns=cat_col,
@@ -105,50 +105,56 @@ df <- og_data[og_data$episode==4,]
 # WRITE DATA TO CSV
 #write.csv(song_data,"./data/song_data.csv", row.names = FALSE)
 
-sd <- song_data
-#sd$id <- 1:nrow(song_data)
-t_sd <- sd %>%
+plot_data <- song_data %>%
   pivot_longer(cols = categories, 'name', 'value') %>%
   select("movie_title", "trilogy", "track_name", "name", "value")
-t_sd[names(t_sd) != "value"] <- t_sd[names(t_sd) != "value"] %>%
-  {lapply(., function(x) {factor(x, levels=unique(x))})}
-o_sd <- t_sd %>%
-  filter(movie_title=="Attack of the Clones")
 
+plot_data$track_name <- plot_data$track_name %>%
+  #as.character() %>%
+  {ifelse(nchar(.)>35, paste0(trimws(substr(., 1, 35-5)),"..."), .)}
+
+plot_data[names(plot_data) != "value"] <- plot_data[names(plot_data) != "value"] %>%
+  {lapply(., function(x) {factor(x, levels=unique(x))})}
+
+filter_data <- plot_data %>%
+  filter(movie_title=="The Force Awakens")
+col <- if (length(unique(filter_data$movie_title))>1) {movie_colors} else {track_colors}
+
+# colors resemble soundtrack bar color (except phantom menace because its grey)
 movie_colors <- c("A New Hope"="#2E66B1", 
-               "The Empire Strikes Back"="#E13028",
-               "Return of the Jedi"="#188655", 
-               "The Phantom Menace"="#B7ADB0", 
-               "Attack of the Clones"="#D79E2A", 
-               "Revenge of the Sith"="#8956A3", 
-               "The Force Awakens"="#E9D84F", 
-               "The Last Jedi"="#C60B36", 
-               "The Rise of Skywalker"="#49508D")
+                  "The Empire Strikes Back"="#E13028",
+                  "Return of the Jedi"="#188655", 
+                  "The Phantom Menace"="#492E27", 
+                  "Attack of the Clones"="#D79E2A", 
+                  "Revenge of the Sith"="#8956A3", 
+                  "The Force Awakens"="#E9D84F", 
+                  "The Last Jedi"="#C60B36", 
+                  "The Rise of Skywalker"="#49508D")
 track_colors <- c("#2E66B1", "#E13028", "#188655", 
-                  "#B7ADB0", "#D79E2A", "#8956A3", 
+                  "#492E27", "#D79E2A", "#8956A3", 
                   "#E9D84F", "#C60B36", "#49508D")
 
 # g_back <- ggplot() +
 #   geom_line(aes(x=name, y=value, group=track_name, color=movie_title), 
-#             data=t_sd, alpha=0.2, #color="grey",
+#             data=plot_data, alpha=0.2, #color="grey",
 #             show.legend=FALSE) +
 #   scale_color_manual(values=rep(sw_colors))
 # g_back
 # g_dynamic <- ggplot() +
 #   geom_line(aes(x=name, y=value, group=track_name, color=movie_title), 
-#             data=o_sd, alpha=1.0, lwd=1, 
+#             data=filter_data, alpha=1.0, lwd=1, 
 #             show.legend=TRUE) +
 #   scale_color_manual(values=rep(sw_colors, length.out=3))
 # g_dynamic
 
 ggplot() +
   geom_line(aes(x=name, y=value, group=track_name, color=movie_title), 
-            data=t_sd, alpha=1.0, color="grey",
+            data=plot_data, alpha=1.0, color="grey",
             show.legend=FALSE) +
   geom_line(aes(x=name, y=value, group=track_name, color=track_name), 
-            data=o_sd, alpha=0.5, lwd=1.5, 
+            data=filter_data, alpha=0.8, lwd=1.5, 
             show.legend=TRUE) +
-  scale_color_manual(values=rep(track_colors, length.out=44)) +
+  scale_color_manual(values=rep(col, length.out=44)) +
   guides(color=guide_legend(override.aes = list(size=1, alpha=1.0))) +
   theme_minimal() +
   coord_cartesian(ylim = c(0, 1)) + 
@@ -156,7 +162,8 @@ ggplot() +
   labs(x="",y="strength") +
   theme(text = element_text(size = 16),
         panel.background = element_rect(fill = "transparent", color = NA),
-        plot.margin = unit(c(0.5, 2.0, 0.5, 0.5), "cm"),
+        # plot.margin = unit(c(0.5, 13.0, 0.5, 0.5), "cm"),
+        # legend.position = c(1.4, 0.5),
         legend.title = element_blank(),
         legend.text = element_text(size=10),
         #legend.key.width = unit(1, "cm"),

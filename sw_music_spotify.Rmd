@@ -36,7 +36,9 @@ The first step is to load in the libraries needed for this analysis.
 library(dplyr)
 library(shiny)
 library(shinyWidgets)
-library(GGally)
+#library(GGally)
+library(tidyr)
+library(ggplot2)
 ```
 
 The `dplyr` package provides resources for grammar and data manipulation, which helps make the code more readable overall. Both `shiny` and `shinyWidgets` are used to output R code as interactive web apps. Many beautiful graphs made from R code use the `ggplot2` package, and `GGally` includes this useful package along with other plots that the other does not have--such as the parallel coordinates plot.
@@ -69,21 +71,51 @@ categories <- c("danceability",
                 "instrumentalness", 
                 "liveness", 
                 "valence")
-cat_col <- which(colnames(song_data) %in% categories)
+#cat_col <- which(colnames(song_data) %in% categories)
 
 # change type of data for these columns to preserve order of values for input selector
-song_data$trilogy <- factor(song_data$trilogy, levels = unique(song_data$trilogy))
-song_data$movie_title <- factor(song_data$movie_title, levels = unique(song_data$movie_title))
-song_data$track_name <- factor(song_data$track_name, levels = unique(song_data$track_name))
+#song_data$trilogy <- factor(song_data$trilogy, levels = unique(song_data$trilogy))
+#song_data$movie_title <- factor(song_data$movie_title, levels = unique(song_data$movie_title))
+#song_data$track_name <- factor(song_data$track_name, levels = unique(song_data$track_name))
+```
+
+```{r}
+plot_data <- song_data %>%
+  pivot_longer(cols = categories, 'name', 'value') %>%
+  select("movie_title", "trilogy", "track_name", "name", "value")
+
+plot_data$track_name <- plot_data$track_name %>%
+  #as.character() %>%
+  {ifelse(nchar(.)>35, paste0(trimws(substr(., 1, 35-5)),"..."), .)}
+
+plot_data[names(plot_data) != "value"] <- plot_data[names(plot_data) != "value"] %>%
+  {lapply(., function(x) {factor(x, levels=unique(x))})}
+
+
+# colors resemble soundtrack bar color (except phantom menace because its grey)
+movie_colors <- c("A New Hope"="#2E66B1", 
+                  "The Empire Strikes Back"="#E13028",
+                  "Return of the Jedi"="#188655", 
+                  "The Phantom Menace"="#492E27", 
+                  "Attack of the Clones"="#D79E2A", 
+                  "Revenge of the Sith"="#8956A3", 
+                  "The Force Awakens"="#E9D84F", 
+                  "The Last Jedi"="#C60B36", 
+                  "The Rise of Skywalker"="#49508D")
+track_colors <- c("#2E66B1", "#E13028", "#188655", 
+                  "#492E27", "#D79E2A", "#8956A3", 
+                  "#E9D84F", "#C60B36", "#49508D")
 ```
 
 ## Interactive Application
 
 To learn more, see [Interactive Documents](http://rmarkdown.rstudio.com/authoring_shiny.html).
 
-THIS SHOULD BE TWO PLOTS:
-1. CURRENT PLOT IS BACKGROUND AND IS ALWAYS THERE
-2. EACH SELECTION PULLS UP A HIGHLIGHTED, THICKER LINE
+FIX TABLE
+
+1. MAKE THE TABLE ITSELF BE SCROLLABLE
+
+2. CENTER THE TABLE DIV
 
 ```{r, echo=FALSE}
 # Define UI
@@ -130,52 +162,62 @@ ui <- fluidPage(
     
 )
 
-
-# Define server logic required to draw a histogram
 server <- function(input, output) {
     
-    res_mod <- callModule(
+    res_tab <- callModule(
         module = selectizeGroupServer,
         id = "my-filters",
         data = song_data,
         vars = c("trilogy", "movie_title", "track_name")
     )
+      
+    res_mod <- callModule(
+        module = selectizeGroupServer,
+        id = "my-filters",
+        data = plot_data,
+        vars = c("trilogy", "movie_title", "track_name")
+    )
     
     output$parallelcoordinates <- renderPlot({
       
-        ggparcoord(song_data,
-                   columns=cat_col,
-                   groupColumn="movie_title",
-                   scale="globalminmax",
-                   showPoints=FALSE,
-                   alphaLines=0.1)
+      plot_cond <- (length(unique(res_mod()$movie_title)) > 1) & 
+        (length(unique(res_mod()$track_name)) > 5)
+      plot_linetype <- if (plot_cond) {res_mod()$movie_title} else {res_mod()$track_name}
+      plot_colors <- if (plot_cond) {movie_colors} else {track_colors}
       
-        ggparcoord(res_mod(),
-                   columns=cat_col,
-                   groupColumn=ifelse(length(unique(res_mod()$movie_title))==1,"track_name","movie_title"),
-                   scale="globalminmax",
-                   showPoints=FALSE,
-                   alphaLines=0.5
-        ) +
-            theme_minimal() +
-            scale_x_discrete(expand = c(0,0)) +
-            scale_color_manual(values=rep(c("#2E66B1", "#E13028", "#188655",
-                                            "#B7ADB0", "#D79E2A", "#8956A3",
-                                            "#E9D84F", "#C60B36", "#49508D"),
-                                          length.out=nrow(res_mod()))) +
-            labs(x="",y="strength") +
-            theme(text = element_text(size = 16),
-                  panel.background = element_rect(fill = "transparent", color = NA),
-                  legend.title = element_blank(),
-                  legend.text = element_text(size=10),
-                  legend.position = c(1.1,0.5),
-                  axis.text.x = element_text(angle = 25, vjust = 0.7, hjust=0.7))
+      ggplot() +
+        geom_line(aes(x=name, y=value, group=track_name, color=movie_title), 
+                  data=plot_data, alpha=1.0, color="grey",
+                  show.legend=FALSE) +
+        geom_line(aes(x=name, y=value, group=track_name,
+                      color=plot_linetype), 
+                  data=res_mod(), alpha=0.8, lwd=1.5, 
+                  show.legend=TRUE) +
+        scale_color_manual(values=rep(
+          plot_colors,
+          #if (length(unique(res_mod()$movie_title))>1) {movie_colors} else {track_colors}, 
+          length.out=nrow(res_mod())
+        )) +
+        guides(color=guide_legend(override.aes = list(size=1, alpha=1.0))) +
+        theme_minimal() +
+        coord_cartesian(ylim = c(0, 1)) + 
+        scale_x_discrete(expand = c(0,0)) +
+        labs(x="",y="strength") +
+        theme(text = element_text(size = 16),
+              panel.background = element_rect(fill = "transparent", color = NA),
+              # plot.margin = unit(c(0.5, 13.0, 0.5, 0.5), "cm"),
+              # legend.position = c(1.4, 0.5),
+              legend.title = element_blank(),
+              legend.text = element_text(size=10),
+              #legend.key.width = unit(1, "cm"),
+              axis.text = element_text(color = "black"),
+              axis.text.x = element_text(angle = 25, vjust = 0.7, hjust=0.7))
         
     })
     
     output$table <- renderTable({
         
-        res_mod()
+        res_tab()
         
     }, striped = TRUE, hover = TRUE)
     
