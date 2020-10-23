@@ -1,0 +1,106 @@
+# Define UI
+ui <- fluidPage(
+    
+    # Application title
+    #titlePanel("Star Wars X Spotify Analysis"),
+    
+    # Sidebar with dropdown input selectors
+    sidebarLayout(
+        sidebarPanel(
+          
+            selectizeGroupUI(
+                id = "my-filters",
+                inline = FALSE,
+                params = list(
+                    trilogy <- list(inputId = "trilogy", title = "Select Trilogy", placeholder = "select"),
+                    movie <- list(inputId = "movie_title", title = "Select Movie", placeholder = "select"),
+                    track <- list(inputId = "track_name", title = "Select Track", placeholder = "select")
+                )
+            )
+            
+        ),
+        
+        # Show a plot of the generated distribution
+        mainPanel(
+            
+            plotOutput(
+                outputId = "parallelcoordinates",
+                width = "100%",
+                height = "400px"
+            ),
+            br()
+            
+        )
+        
+    ),
+    
+    fluidRow(
+        
+        div(tableOutput("table"), style = "font-size: 90%; display: flex; justify-content: center; overflow-y: scroll; height: 400px")
+        
+    )
+    
+)
+server <- function(input, output) {
+    
+    res_tab <- callModule(
+        module = selectizeGroupServer,
+        id = "my-filters",
+        data = song_data,
+        vars = c("trilogy", "movie_title", "track_name")
+    )
+        
+      
+    res_mod <- callModule(
+        module = selectizeGroupServer,
+        id = "my-filters",
+        data = plot_data,
+        vars = c("trilogy", "movie_title", "track_name")
+    )
+    
+    output$parallelcoordinates <- renderPlot({
+      
+      plot_cond <- (length(unique(res_mod()$movie_title)) > 1) & 
+        (length(unique(res_mod()$track_name)) > 5)
+      plot_linetype <- if (plot_cond) {res_mod()$movie_title} else {res_mod()$track_name}
+      plot_colors <- if (plot_cond) {movie_colors} else {track_colors}
+      
+      ggplot() +
+        geom_line(aes(x=name, y=value, group=track_name, color=movie_title), 
+                  data=plot_data, alpha=1.0, color="grey",
+                  show.legend=FALSE) +
+        geom_line(aes(x=name, y=value, group=track_name,
+                      color=plot_linetype), 
+                  data=res_mod(), alpha=0.8, lwd=1.5, 
+                  show.legend=TRUE) +
+        scale_color_manual(values=rep(
+          plot_colors,
+          #if (length(unique(res_mod()$movie_title))>1) {movie_colors} else {track_colors}, 
+          length.out=nrow(res_mod())
+        )) +
+        guides(color=guide_legend(override.aes = list(size=1, alpha=1.0))) +
+        theme_minimal() +
+        coord_cartesian(ylim = c(0, 1)) + 
+        scale_x_discrete(expand = c(0,0)) +
+        labs(x="",y="strength") +
+        theme(text = element_text(size = 16),
+              panel.background = element_rect(fill = "transparent", color = NA),
+              # plot.margin = unit(c(0.5, 13.0, 0.5, 0.5), "cm"),
+              # legend.position = c(1.4, 0.5),
+              legend.title = element_blank(),
+              legend.text = element_text(size=10),
+              #legend.key.width = unit(1, "cm"),
+              axis.text = element_text(color = "black"),
+              axis.text.x = element_text(angle = 25, vjust = 0.7, hjust=0.7))
+        
+    })
+    
+    output$table <- renderTable({
+      
+      res_tab()
+        
+    }, striped = TRUE, hover = TRUE)
+    
+}
+# Run the application 
+shinyApp(ui = ui, server = server, options = list(width="120%", height=700))
