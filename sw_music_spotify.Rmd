@@ -1,7 +1,7 @@
 ---
 title: "Star Wars Music Analysis Using Spotify API"
 author: "Ben Borovinsky"
-date: "October 15, 2020"
+date: "October 25, 2020"
 output: html_document
 runtime: shiny
 ---
@@ -18,11 +18,11 @@ knitr::opts_chunk$set(echo = TRUE)
 }
 ```
 
-It's no secret that Star Wars has a massive following. What began as a space opera in 1977 evolved into a universe that is impossible to avoid. Star Wars has expanded from a cult following to being a significnat part of culture and media.
+It's no secret that Star Wars has a massive following. What began as a space opera in 1977 has evolved into a franchise with universal recognition and fandom. Star Wars has expanded from a cult following to being a significnat part of culture and media.
 
 There are many elements that make Star Wars what it is. The iconic characters, cringy dialogue, distinct planets, and, of course, the lightsabers, are all significant pieces that make up the successful franchise. In recent years, the movies themselves have been subject to criticism, but one thing has remained consistently posititve since the original trilogy: the music. John Williams has scored many iconic films, winning five academy awards and being nominated for 52 (second all-time behind Walt Disney). Williams is as synonymous with Star Wars as George Lucas, for he has scored every film in the Skywalker Saga (Episode I-IX). Like Vin Scully in the world of sports broadcasting, John Williams is the greatest film composer of all-time.
 
-I, like many other Star Wars fans, enjoy listening to John Williams outside of the movies. The music streaming application Spotify has been my medium of choice to listen to Williams' catalogue of Star Wars music, and I've listened to a lot of his music. At the end of 2019, Spotify released a personalized report of each user's listening habits, and the top two artists I listened to the most were John Williams and the London Symphony Orchestra.
+I, like many other Star Wars fans, enjoy listening to John Williams outside of the movies. The music streaming application Spotify has been my medium of choice to listen to Williams' catalogue of Star Wars music, and I've listened to a lot of his music. At the end of 2019, Spotify released a personalized report of each user's listening habits, and two of the top three I listened to the most were John Williams and the London Symphony Orchestra (the other being Frank Sinatra).
 
 Spotify's analysis of my listening habits have encouraged me to do some analytics of my own. More specifically, I want to further analyze the music of Star Wars. While I do not have an academic backgound in music and I consider myself at best an amatuer at data analytics, I figured this would help me learn more about two things I am very passionate about: Star Wars music and data analytics.
 
@@ -37,8 +37,14 @@ library(dplyr)
 library(shiny)
 library(shinyWidgets)
 #library(GGally)
+library(knitr)
+#library(fmsb)
 library(tidyr)
 library(ggplot2)
+```
+
+```{r include=FALSE}
+options(dplyr.summarise.inform = FALSE)
 ```
 
 The `dplyr` package provides resources for grammar and data manipulation, which helps make the code more readable overall. Both `shiny` and `shinyWidgets` are used to output R code as interactive web apps. Many beautiful graphs made from R code use the `ggplot2` package, and `GGally` includes this useful package along with other plots that the other does not have--such as the parallel coordinates plot.
@@ -46,10 +52,67 @@ The `dplyr` package provides resources for grammar and data manipulation, which 
 This analysis will not go in-depth about getting access to the API, but it isn't a difficult task and there are many tutorials online to help with that. I already retrieved, cleaned, and exported the music data from Spotify to a csv file, so importing data into R will take only one line.
 
 ```{r}
-song_data <- read.csv("./data/song_data.csv", stringsAsFactors = FALSE)
+song_data <- read.csv("./data/john_williams_star_wars_data.csv",stringsAsFactors=FALSE)
 ```
 
-## Cleaning the Data
+## Data Cleaning
+
+```{r}
+# ADD EPISODE
+song_data <- song_data %>%
+  mutate(episode = with(.,case_when(
+    (album_release_year == 1977) ~ 4,
+    (album_release_year == 1980) ~ 5,
+    (album_release_year == 1983) ~ 6,
+    (album_release_year == 1999) ~ 1,
+    (album_release_year == 2002) ~ 2,
+    (album_release_year == 2005) ~ 3,
+    (album_release_year == 2015) ~ 7,
+    (album_release_year == 2017) ~ 8,
+    (album_release_year == 2019) ~ 9
+  )))
+
+# GET MOVIE TITLE FROM ALBUM TITLE
+song_data$movie_title <- song_data$album_name %>%
+  gsub(".*[:]\\s(.*)\\s\\(.*","\\1",.)
+
+# ADD TRILOGY
+ELSE <- TRUE
+song_data <- song_data %>%
+  mutate(trilogy = with(.,case_when(
+    (episode <= 3) ~ "Prequel",
+    (episode <= 6) ~ "Original",
+    ELSE ~ "Sequel"
+  )))
+
+# ORGANIZE DATA
+song_data <- song_data[order(song_data$album_release_year, song_data$track_number),]
+rownames(song_data) <- NULL
+
+# REORDER COLUMNS (OMIT album_release_date, key, mode)
+song_data <- song_data %>%
+  select(
+    episode:trilogy,
+    track_number,
+    track_name,
+    artist_name,
+    album_name,
+    duration_ms,
+    album_release_year,
+    danceability:energy,
+    speechiness:tempo,
+    loudness,
+    key_name:key_mode
+  )
+
+categories <- c("danceability", 
+                "energy", 
+                "speechiness", 
+                "acousticness", 
+                "instrumentalness", 
+                "liveness", 
+                "valence")
+```
 
 I still have some more cleaning to do before I start plotting the data.
 
@@ -63,35 +126,49 @@ song_data <- song_data %>%
         danceability:valence
     )
 
-# get column number for spotify categories
-categories <- c("danceability", 
-                "energy", 
-                "speechiness", 
-                "acousticness", 
-                "instrumentalness", 
-                "liveness", 
-                "valence")
-#cat_col <- which(colnames(song_data) %in% categories)
+song_data$movie_title <- song_data$movie_title %>%
+  {factor(., levels=unique(.))}
+```
 
-# change type of data for these columns to preserve order of values for input selector
-#song_data$trilogy <- factor(song_data$trilogy, levels = unique(song_data$trilogy))
-#song_data$movie_title <- factor(song_data$movie_title, levels = unique(song_data$movie_title))
-#song_data$track_name <- factor(song_data$track_name, levels = unique(song_data$track_name))
+## Quick Analysis
+
+```{r}
+song_data %>%
+  group_by(movie_title) %>%
+  summarise(count = n(),
+            across(all_of(categories), ~ mean(.x)),
+            .groups = "keep") %>%
+  kable(format = "markdown", digits = 3, row.names = FALSE)
+```
+
+```{r}
+song_data %>%
+  group_by(trilogy) %>%
+  summarise(count = n(),
+            across(all_of(categories), ~ mean(.x)),
+            .groups = "keep") %>%
+  kable(format = "markdown", digits = 3, row.names = FALSE)
+```
+
+```{r}
+song_data[(song_data$valence > 0.5), c("track_name", "movie_title", "trilogy", "valence")] %>%
+  kable(format = "markdown", digits = 3, row.names = FALSE)
 ```
 
 ```{r}
 plot_data <- song_data %>%
-  pivot_longer(cols = categories, 'name', 'value') %>%
+  pivot_longer(cols = all_of(categories), 'name', 'value') %>%
   select("movie_title", "trilogy", "track_name", "name", "value")
 
+char_lim <- 35
 plot_data$track_name <- plot_data$track_name %>%
-  #as.character() %>%
-  {ifelse(nchar(.)>35, paste0(trimws(substr(., 1, 35-5)),"..."), .)}
+  {ifelse(nchar(.)>char_lim, paste0(trimws(substr(., 1, char_lim-5)),"..."), .)}
 
 plot_data[names(plot_data) != "value"] <- plot_data[names(plot_data) != "value"] %>%
   {lapply(., function(x) {factor(x, levels=unique(x))})}
+```
 
-
+```{r}
 # colors resemble soundtrack bar color (except phantom menace because its grey)
 movie_colors <- c("A New Hope"="#2E66B1", 
                   "The Empire Strikes Back"="#E13028",
@@ -105,6 +182,18 @@ movie_colors <- c("A New Hope"="#2E66B1",
 track_colors <- c("#2E66B1", "#E13028", "#188655", 
                   "#492E27", "#D79E2A", "#8956A3", 
                   "#E9D84F", "#C60B36", "#49508D")
+```
+
+```{r eval=FALSE, include=FALSE}
+radar_data <- rbind(rep(1,ncol(movie_data)),rep(0,ncol(movie_data)),movie_data)
+radarchart(radar_data[,categories], axistype = 4,
+           plwd = 2, plty = 1, pty = 32,
+           pcol = track_colors, cglcol = "grey", cglty = 1, axislabcol = "grey", 
+           caxislabels = seq(0, 1, 5), cglwd = 0.8, vlcex = 1)
+legend(x=1.4, y=0.7, legend = movie_data$movie_title,
+       bty = "n", lwd=1 , col=track_colors, 
+       text.col = "black", cex=0.8, pt.cex=1, y.intersp = 1, seg.len = 1)
+
 ```
 
 ## Interactive Application
@@ -156,12 +245,11 @@ ui <- fluidPage(
     
     fluidRow(
         
-        div(tableOutput("table"), style = "font-size: 90%")
+        div(tableOutput("table"), style = "font-size: 90%; display: flex; justify-content: center; overflow-y: scroll; height: 200px")
         
     )
     
 )
-
 server <- function(input, output) {
     
     res_tab <- callModule(
@@ -170,6 +258,7 @@ server <- function(input, output) {
         data = song_data,
         vars = c("trilogy", "movie_title", "track_name")
     )
+        
       
     res_mod <- callModule(
         module = selectizeGroupServer,
@@ -191,7 +280,7 @@ server <- function(input, output) {
                   show.legend=FALSE) +
         geom_line(aes(x=name, y=value, group=track_name,
                       color=plot_linetype), 
-                  data=res_mod(), alpha=0.8, lwd=1.5, 
+                  data=res_mod(), alpha=0.6, lwd=1.5, 
                   show.legend=TRUE) +
         scale_color_manual(values=rep(
           plot_colors,
@@ -216,15 +305,14 @@ server <- function(input, output) {
     })
     
     output$table <- renderTable({
-        
-        res_tab()
+      
+      res_tab()
         
     }, striped = TRUE, hover = TRUE)
     
 }
-
 # Run the application 
-shinyApp(ui = ui, server = server, options = list(width="120%", height=700))
+shinyApp(ui = ui, server = server, options = list(width="120%", height=650))
 ```
 
 As I learn more about advanced techniques in data analysis, I would like to do more with this data (i.e. get a list of similar songs given a song input from the user). 

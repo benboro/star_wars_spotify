@@ -1,7 +1,7 @@
 library(dplyr, quietly = TRUE)
 #library(dplyr, warn.conflicts = FALSE)
 #library(GGally, quietly = TRUE)
-#library(fmsb)
+library(fmsb)
 library(tidyr)
 library(ggplot2)
 #library(ggthemes) # for FiveThirtyEight-style plot
@@ -118,7 +118,7 @@ plot_data[names(plot_data) != "value"] <- plot_data[names(plot_data) != "value"]
 
 filter_data <- plot_data %>%
   filter(movie_title=="The Force Awakens")
-col <- if (length(unique(filter_data$movie_title))>1) {movie_colors} else {track_colors}
+
 
 # colors resemble soundtrack bar color (except phantom menace because its grey)
 movie_colors <- c("A New Hope"="#2E66B1", 
@@ -133,6 +133,8 @@ movie_colors <- c("A New Hope"="#2E66B1",
 track_colors <- c("#2E66B1", "#E13028", "#188655", 
                   "#492E27", "#D79E2A", "#8956A3", 
                   "#E9D84F", "#C60B36", "#49508D")
+
+col <- if (length(unique(filter_data$movie_title))>1) {movie_colors} else {track_colors}
 
 # g_back <- ggplot() +
 #   geom_line(aes(x=name, y=value, group=track_name, color=movie_title), 
@@ -169,4 +171,28 @@ ggplot() +
         #legend.key.width = unit(1, "cm"),
         axis.text = element_text(color = "black"),
         axis.text.x = element_text(angle = 25, vjust = 0.7, hjust=0.7))
+
+song_data$movie_title <- song_data$movie_title %>%
+  {factor(., levels=unique(.))}
+song_data %>%
+  group_by(movie_title) %>%
+  summarise(count = n(),
+            across(categories, ~ mean(.x)))
+tril_data <- song_data %>%
+  group_by(trilogy) %>%
+  summarise(count = n(),
+            across(categories, ~ mean(.x)))
+
+song_data[order(-song_data$valence), c("track_name", "movie_title", "trilogy", "valence")] %>% 
+  head(5)
+
+radar_data <- rbind(rep(1,ncol(tril_data)),rep(0,ncol(tril_data)),tril_data)
+radarchart(radar_data[,categories], axistype = 4,
+           plwd = 2, plty = 1, pty = 32,
+           cglcol = "grey", cglty = 1, axislabcol = "grey", caxislabels = seq(0, 1, 5), cglwd = 0.8,
+           vlcex = 0.8
+           )
+legend(x=1, y=0.7, legend = tril_data$trilogy,
+       bty = "n", lwd=1 , col=c("red", "blue", "green"), 
+       text.col = "black", cex=0.8, pt.cex=1, y.intersp = 0.5, seg.len = 0.5)
 
