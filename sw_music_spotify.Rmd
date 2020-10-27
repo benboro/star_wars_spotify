@@ -33,12 +33,11 @@ In order to do an analysis, I need to get data. Thankfully, Spotify gives users 
 The first step is to load in the libraries needed for this analysis.
 
 ```{r, warning=FALSE, message=FALSE}
+library(spotifyr)
 library(dplyr)
 library(shiny)
 library(shinyWidgets)
-#library(GGally)
 library(knitr)
-#library(fmsb)
 library(tidyr)
 library(ggplot2)
 ```
@@ -49,18 +48,75 @@ options(dplyr.summarise.inform = FALSE)
 
 The `dplyr` package provides resources for grammar and data manipulation, which helps make the code more readable overall. Both `shiny` and `shinyWidgets` are used to output R code as interactive web apps. Many beautiful graphs made from R code use the `ggplot2` package, and `GGally` includes this useful package along with other plots that the other does not have--such as the parallel coordinates plot.
 
+```{r eval=FALSE, echo=TRUE}
+rm(list=ls())
+graphics.off()
+dirpath <- dirname(rstudioapi::getSourceEditorContext()$path)
+setwd(dirpath)
+```
+
 This analysis will not go in-depth about getting access to the API, but it isn't a difficult task and there are many tutorials online to help with that. I already retrieved, cleaned, and exported the music data from Spotify to a csv file, so importing data into R will take only one line.
 
-```{r}
-song_data <- read.csv("./data/john_williams_star_wars_data.csv",stringsAsFactors=FALSE)
+Note that these next several blocks are not run to save time on data retrieval from Spotify (and to keep the credentials hidden).
+
+```{r eval=FALSE, echo=TRUE}
+# SPOTIFY USER CREDENTIALS
+client_id <- "###"
+client_secret <- "###"
+
+# GAIN ACCESS INTO SPOTIFY
+Sys.setenv(SPOTIFY_CLIENT_ID = client_id)
+Sys.setenv(SPOTIFY_CLIENT_SECRET = client_secret)
+
+tkn <- get_spotify_access_token(client_id, client_secret)
+oauth <- get_spotify_authorization_code(scope = "playlist-read-private user-top-read")
+```
+
+```{r eval=FALSE, echo=TRUE}
+# GET ALL WORK FROM JOHN WILLIAMS
+jw_complete <- get_artist_audio_features("john williams")
+
+# GET ONLY WORK AVAILABLE IN US MARKET
+jw_us <- jw_complete[grepl("US", jw_complete$available_markets),]
+
+# GET STAR WARS ORIGINAL SOUNDTRACKS
+jw_sw <- jw_us[grepl("Star Wars:.*Original Motion Picture Soundtrack", jw_us$album_name),]
+
+# SELECT ONLY RELEVANT COLUMNS
+jw_df <- jw_sw %>%
+  select(!c(artist_id,
+            album_id,
+            album_type,
+            album_images,
+            album_release_date_precision,
+            track_id,
+            analysis_url,
+            time_signature,
+            artists,
+            available_markets,
+            disc_number,
+            explicit,
+            track_href,
+            is_local,
+            track_preview_url,
+            type,
+            track_uri,
+            external_urls.spotify))
+
+# SAVE DATA IN CSV FILE AND RDS FILE
+write.csv(jw_df, "./data/john_williams_star_wars_data.csv", row.names=FALSE)
 ```
 
 ## Data Cleaning
 
 ```{r}
+song_data <- read.csv("./data/john_williams_star_wars_data.csv", stringsAsFactors=FALSE)
+```
+
+```{r}
 # ADD EPISODE
 song_data <- song_data %>%
-  mutate(episode = with(.,case_when(
+  mutate(episode = with(., case_when(
     (album_release_year == 1977) ~ 4,
     (album_release_year == 1980) ~ 5,
     (album_release_year == 1983) ~ 6,
@@ -79,7 +135,7 @@ song_data$movie_title <- song_data$album_name %>%
 # ADD TRILOGY
 ELSE <- TRUE
 song_data <- song_data %>%
-  mutate(trilogy = with(.,case_when(
+  mutate(trilogy = with(., case_when(
     (episode <= 3) ~ "Prequel",
     (episode <= 6) ~ "Original",
     ELSE ~ "Sequel"
@@ -157,12 +213,12 @@ song_data[(song_data$valence > 0.5), c("track_name", "movie_title", "trilogy", "
 
 ```{r}
 plot_data <- song_data %>%
-  pivot_longer(cols = all_of(categories), 'name', 'value') %>%
+  pivot_longer(cols = all_of(categories), "name", "value") %>%
   select("movie_title", "trilogy", "track_name", "name", "value")
 
 char_lim <- 35
 plot_data$track_name <- plot_data$track_name %>%
-  {ifelse(nchar(.)>char_lim, paste0(trimws(substr(., 1, char_lim-5)),"..."), .)}
+  {ifelse(nchar(.) > char_lim, paste0(trimws(substr(., 1, char_lim-5)),"..."), .)}
 
 plot_data[names(plot_data) != "value"] <- plot_data[names(plot_data) != "value"] %>%
   {lapply(., function(x) {factor(x, levels=unique(x))})}
@@ -170,15 +226,15 @@ plot_data[names(plot_data) != "value"] <- plot_data[names(plot_data) != "value"]
 
 ```{r}
 # colors resemble soundtrack bar color (except phantom menace because its grey)
-movie_colors <- c("A New Hope"="#2E66B1", 
-                  "The Empire Strikes Back"="#E13028",
-                  "Return of the Jedi"="#188655", 
-                  "The Phantom Menace"="#492E27", 
-                  "Attack of the Clones"="#D79E2A", 
-                  "Revenge of the Sith"="#8956A3", 
-                  "The Force Awakens"="#E9D84F", 
-                  "The Last Jedi"="#C60B36", 
-                  "The Rise of Skywalker"="#49508D")
+movie_colors <- c("A New Hope" = "#2E66B1", 
+                  "The Empire Strikes Back" = "#E13028",
+                  "Return of the Jedi" = "#188655", 
+                  "The Phantom Menace" = "#492E27", 
+                  "Attack of the Clones" = "#D79E2A", 
+                  "Revenge of the Sith" = "#8956A3", 
+                  "The Force Awakens" = "#E9D84F", 
+                  "The Last Jedi" = "#C60B36", 
+                  "The Rise of Skywalker" = "#49508D")
 track_colors <- c("#2E66B1", "#E13028", "#188655", 
                   "#492E27", "#D79E2A", "#8956A3", 
                   "#E9D84F", "#C60B36", "#49508D")
@@ -199,12 +255,6 @@ legend(x=1.4, y=0.7, legend = movie_data$movie_title,
 ## Interactive Application
 
 To learn more, see [Interactive Documents](http://rmarkdown.rstudio.com/authoring_shiny.html).
-
-FIX TABLE
-
-1. MAKE THE TABLE ITSELF BE SCROLLABLE
-
-2. CENTER THE TABLE DIV
 
 ```{r, echo=FALSE}
 # Define UI
@@ -280,7 +330,7 @@ server <- function(input, output) {
                   show.legend=FALSE) +
         geom_line(aes(x=name, y=value, group=track_name,
                       color=plot_linetype), 
-                  data=res_mod(), alpha=0.6, lwd=1.5, 
+                  data=res_mod(), alpha=0.7, lwd=1.5, 
                   show.legend=TRUE) +
         scale_color_manual(values=rep(
           plot_colors,
