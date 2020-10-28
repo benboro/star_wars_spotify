@@ -18,17 +18,15 @@ knitr::opts_chunk$set(echo = TRUE)
 }
 ```
 
-It's no secret that Star Wars has a massive following. What began as a space opera in 1977 has evolved into a franchise with universal recognition and fandom. Star Wars has expanded from a cult following to being a significnat part of culture and media.
+It's no secret that Star Wars has a massive following. What began as a space opera in 1977 has evolved into a franchise with universal recognition and fandom. Star Wars has expanded from a cult following to being a significant part of culture and media.
 
-There are many elements that make Star Wars what it is. The iconic characters, cringy dialogue, distinct planets, and, of course, the lightsabers, are all significant pieces that make up the successful franchise. In recent years, the movies themselves have been subject to criticism, but one thing has remained consistently posititve since the original trilogy: the music. John Williams has scored many iconic films, winning five academy awards and being nominated for 52 (second all-time behind Walt Disney). Williams is as synonymous with Star Wars as George Lucas, for he has scored every film in the Skywalker Saga (Episode I-IX). Like Vin Scully in the world of sports broadcasting, John Williams is the greatest film composer of all-time.
+There are many elements that make Star Wars what it is. The iconic characters, cringe dialogue, distinct planets, and, of course, the lightsabers, are all significant pieces that make up the successful franchise. In recent years, the movies themselves have been subject to criticism, but one thing has remained consistently positive since the original trilogy: the music. John Williams has scored many iconic films, winning five academy awards and being nominated for 52 (second all-time behind Walt Disney). Williams is as synonymous with Star Wars as George Lucas, for he has scored every film in the Skywalker Saga (Episode I-IX). Like Vin Scully in the world of sports broadcasting, John Williams is the greatest film composer of all-time.
 
 I, like many other Star Wars fans, enjoy listening to John Williams outside of the movies. The music streaming application Spotify has been my medium of choice to listen to Williams' catalogue of Star Wars music, and I've listened to a lot of his music. At the end of 2019, Spotify released a personalized report of each user's listening habits, and two of the top three I listened to the most were John Williams and the London Symphony Orchestra (the other being Frank Sinatra).
 
-Spotify's analysis of my listening habits have encouraged me to do some analytics of my own. More specifically, I want to further analyze the music of Star Wars. While I do not have an academic backgound in music and I consider myself at best an amatuer at data analytics, I figured this would help me learn more about two things I am very passionate about: Star Wars music and data analytics.
+Spotify's analysis of my listening habits have encouraged me to do some analytics of my own. More specifically, I want to further analyze the music of Star Wars. While I do not have an academic background in music and I consider myself at best an amateur at data analytics, I figured this would help me learn more about two things I am very passionate about: Star Wars music and data analytics.
 
-## Getting the Data
-
-In order to do an analysis, I need to get data. Thankfully, Spotify gives users access to its API, which makes the data acquisition relatively painless. Along with the information you would expect, the data from Spotify also includes metrics for each song to help give numerical values to the attributes of a song (this is probably how Spotify comes up with similar songs based on your listening habits or when you create a playlist); these metrics are danceability, energy, speechiness, acousticness, instrumentalness, liveness, and valence.
+## Setup
 
 The first step is to load in the libraries needed for this analysis.
 
@@ -46,7 +44,15 @@ library(ggplot2)
 options(dplyr.summarise.inform = FALSE)
 ```
 
-The `dplyr` package provides resources for grammar and data manipulation, which helps make the code more readable overall. Both `shiny` and `shinyWidgets` are used to output R code as interactive web apps. Many beautiful graphs made from R code use the `ggplot2` package, and `GGally` includes this useful package along with other plots that the other does not have--such as the parallel coordinates plot.
+Each library includes its own set of tools that are necessary for our analysis.
+
+* `spotifyr`: gain access to the Spotify API
+* `dplyr`: grammar and data manipulation
+* `shiny`: output R code as an interactive web app
+* `shinyWidgets`: more options for customizing web app
+* `knitr`: structural elements to R code output
+* `tidyr`: modify data for analysis
+* `ggplot2`: data visualization
 
 ```{r eval=FALSE, echo=TRUE}
 rm(list=ls())
@@ -55,7 +61,9 @@ dirpath <- dirname(rstudioapi::getSourceEditorContext()$path)
 setwd(dirpath)
 ```
 
-This analysis will not go in-depth about getting access to the API, but it isn't a difficult task and there are many tutorials online to help with that. I already retrieved, cleaned, and exported the music data from Spotify to a csv file, so importing data into R will take only one line.
+## Getting the Data
+
+In order to do an analysis, I need to get data. Thankfully, Spotify gives users access to its API, which makes the data acquisition relatively painless. Along with the information you would expect, the data from Spotify also includes metrics for each song to help give numerical values to the attributes of a song (this is probably how Spotify comes up with similar songs based on your listening habits or when you create a playlist); these metrics are danceability, energy, speechiness, acousticness, instrumentalness, liveness, and valence.
 
 Note that these next several blocks are not run to save time on data retrieval from Spotify (and to keep the credentials hidden).
 
