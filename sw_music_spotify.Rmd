@@ -1,7 +1,7 @@
 ---
 title: "Star Wars Music Analysis Using Spotify API"
 author: "Ben Borovinsky"
-date: "October 25, 2020"
+date: '`r Sys.Date()`'
 output: html_document
 runtime: shiny
 ---
@@ -44,7 +44,7 @@ library(ggplot2)
 options(dplyr.summarise.inform = FALSE)
 ```
 
-Each library includes its own set of tools that are necessary for our analysis.
+Each library includes its own set of tools that are required for our analysis.
 
 * `spotifyr`: gain access to the Spotify API
 * `dplyr`: grammar and data manipulation
@@ -53,6 +53,8 @@ Each library includes its own set of tools that are necessary for our analysis.
 * `knitr`: structural elements to R code output
 * `tidyr`: modify data for analysis
 * `ggplot2`: data visualization
+
+To finish setting everything up, I like to make sure that I'm not using any variables from a previous script or looking at a graph that is no longer relevant. I have also found it helpful to set the directory path to that of the current file so that I don't have to remember to do it when I open RStudio.
 
 ```{r eval=FALSE, echo=TRUE}
 rm(list=ls())
@@ -63,16 +65,16 @@ setwd(dirpath)
 
 ## Getting the Data
 
+*Note that this section of code is not run to save time on data retrieval from Spotify (and to keep the credentials hidden).*
+
 In order to do an analysis, I need to get data. Thankfully, Spotify gives users access to its API, which makes the data acquisition relatively painless. Along with the information you would expect, the data from Spotify also includes metrics for each song to help give numerical values to the attributes of a song (this is probably how Spotify comes up with similar songs based on your listening habits or when you create a playlist); these metrics are danceability, energy, speechiness, acousticness, instrumentalness, liveness, and valence.
 
-Note that these next several blocks are not run to save time on data retrieval from Spotify (and to keep the credentials hidden).
+Accessing the Spotify API is simple. All that is needed is to register with the Spotify developers [website](https://developer.spotify.com/documentation/web-api/quick-start/) and obtain user credentials.
 
 ```{r eval=FALSE, echo=TRUE}
-# SPOTIFY USER CREDENTIALS
 client_id <- "###"
 client_secret <- "###"
 
-# GAIN ACCESS INTO SPOTIFY
 Sys.setenv(SPOTIFY_CLIENT_ID = client_id)
 Sys.setenv(SPOTIFY_CLIENT_SECRET = client_secret)
 
@@ -80,38 +82,53 @@ tkn <- get_spotify_access_token(client_id, client_secret)
 oauth <- get_spotify_authorization_code(scope = "playlist-read-private user-top-read")
 ```
 
+Now that we have gained authorization to access the API, we can get all of the music from John Williams.
+
 ```{r eval=FALSE, echo=TRUE}
-# GET ALL WORK FROM JOHN WILLIAMS
 jw_complete <- get_artist_audio_features("john williams")
+```
 
-# GET ONLY WORK AVAILABLE IN US MARKET
+That's all we need from Spotify; the rest is up to us on what we want to do with the data. For starters, I want to analyze the John Williams music available to the United States.
+
+```{r eval=FALSE, echo=TRUE}
 jw_us <- jw_complete[grepl("US", jw_complete$available_markets),]
+```
 
-# GET STAR WARS ORIGINAL SOUNDTRACKS
+John Williams is a very accomplished composer who has conducted beautiful and iconic soundtracks for many films. However, this analysis focuses solely on his work for Star Wars.
+
+```{r eval=FALSE, echo=TRUE}
 jw_sw <- jw_us[grepl("Star Wars:.*Original Motion Picture Soundtrack", jw_us$album_name),]
+```
 
-# SELECT ONLY RELEVANT COLUMNS
+Everything you could possibly imagine tied to Spotify track information is included in the data, and we don't need all of it. To make things a bit less overwhelming, I'm going to remove a good amount of columns that have no impact on the analysis.
+
+```{r eval=FALSE, echo=TRUE}
 jw_df <- jw_sw %>%
-  select(!c(artist_id,
-            album_id,
-            album_type,
-            album_images,
-            album_release_date_precision,
-            track_id,
-            analysis_url,
-            time_signature,
-            artists,
-            available_markets,
-            disc_number,
-            explicit,
-            track_href,
-            is_local,
-            track_preview_url,
-            type,
-            track_uri,
-            external_urls.spotify))
+  select(!c(
+    artist_id, 
+    album_id, 
+    album_type, 
+    album_images, 
+    album_release_date_precision, 
+    track_id, 
+    analysis_url, 
+    time_signature, 
+    artists, 
+    available_markets, 
+    disc_number, 
+    explicit, 
+    track_href, 
+    is_local, 
+    track_preview_url, 
+    type, 
+    track_uri, 
+    external_urls.spotify
+  ))
+```
 
-# SAVE DATA IN CSV FILE AND RDS FILE
+At this point, the data is in a good spot to export to csv. Having a local copy of the Spotify data means that you can start your analysis offline using only the data you want (and you don't have to access the API every time you run the script).
+
+```{r eval=FALSE, echo=TRUE}
 write.csv(jw_df, "./data/john_williams_star_wars_data.csv", row.names=FALSE)
 ```
 
@@ -119,6 +136,7 @@ write.csv(jw_df, "./data/john_williams_star_wars_data.csv", row.names=FALSE)
 
 ```{r}
 song_data <- read.csv("./data/john_williams_star_wars_data.csv", stringsAsFactors=FALSE)
+colnames(song_data)
 ```
 
 ```{r}
@@ -374,47 +392,4 @@ shinyApp(ui = ui, server = server, options = list(width="120%", height=650))
 ```
 
 As I learn more about advanced techniques in data analysis, I would like to do more with this data (i.e. get a list of similar songs given a song input from the user). 
-
-## Inputs and Outputs
-
-You can embed Shiny inputs and outputs in your document. Outputs are automatically updated whenever inputs change.  This demonstrates how a standard R plot can be made interactive by wrapping it in the Shiny `renderPlot` function. The `selectInput` and `sliderInput` functions create the input widgets used to drive the plot.
-
-```{r eruptions, echo=FALSE}
-inputPanel(
-  selectInput("n_breaks", label = "Number of bins:",
-              choices = c(10, 20, 35, 50), selected = 20),
-  
-  sliderInput("bw_adjust", label = "Bandwidth adjustment:",
-              min = 0.2, max = 2, value = 1, step = 0.2)
-)
-
-renderPlot({
-  hist(faithful$eruptions, probability = TRUE, breaks = as.numeric(input$n_breaks),
-       xlab = "Duration (minutes)", main = "Geyser eruption duration")
-  
-  dens <- density(faithful$eruptions, adjust = input$bw_adjust)
-  lines(dens, col = "blue")
-})
-```
-
-## Embedded Application
-
-It's also possible to embed an entire Shiny application within an R Markdown document using the `shinyAppDir` function. This example embeds a Shiny application located in another directory:
-
-```{r tabsets, echo=FALSE}
-shinyAppDir(
-  system.file("examples/06_tabsets", package = "shiny"),
-  options = list(
-    width = "100%", height = 550
-  )
-)
-```
-
-Note the use of the `height` parameter to determine how much vertical space the embedded application should occupy.
-
-You can also use the `shinyApp` function to define an application inline rather then in an external directory.
-
-In all of R code chunks above the `echo = FALSE` attribute is used. This is to prevent the R code within the chunk from rendering in the document alongside the Shiny components.
-
-
 
