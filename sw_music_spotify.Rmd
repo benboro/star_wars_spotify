@@ -18,13 +18,17 @@ knitr::opts_chunk$set(echo = TRUE)
 }
 ```
 
-It's no secret that Star Wars has a massive following. What began as a space opera in 1977 has evolved into a franchise with universal recognition and fandom. Star Wars has expanded from a cult following to being a significant part of culture and media.
+It's no secret that *Star Wars* has a massive following. What began as a space opera in 1977 has evolved into a franchise with universal recognition and fandom. *Star Wars* has expanded from a cult following to being a significant part of culture and media.
 
-There are many elements that make Star Wars what it is. The iconic characters, cringe dialogue, distinct planets, and, of course, the lightsabers, are all significant pieces that make up the successful franchise. In recent years, the movies themselves have been subject to criticism, but one thing has remained consistently positive since the original trilogy: the music. John Williams has scored many iconic films, winning five academy awards and being nominated for 52 (second all-time behind Walt Disney). Williams is as synonymous with Star Wars as George Lucas, for he has scored every film in the Skywalker Saga (Episode I-IX). Like Vin Scully in the world of sports broadcasting, John Williams is the greatest film composer of all-time.
+There are many elements that make *Star Wars* what it is. The iconic characters, cringe dialogue, distinct planets, and, of course, the lightsabers, are all significant pieces that make up the successful franchise. In recent years, the movies themselves have been subject to criticism, but one thing has remained consistently positive since the original trilogy: the music. John Williams has scored many iconic films, winning five academy awards and being nominated for 52 (second all-time behind Walt Disney). Williams is as synonymous with *Star Wars* as George Lucas, for he has scored every film in the Skywalker Saga (Episode I-IX). Like Vin Scully in the world of sports broadcasting, John Williams is the greatest film composer of all-time.
 
-I, like many other Star Wars fans, enjoy listening to John Williams outside of the movies. The music streaming application Spotify has been my medium of choice to listen to Williams' catalogue of Star Wars music, and I've listened to a lot of his music. At the end of 2019, Spotify released a personalized report of each user's listening habits, and two of the top three I listened to the most were John Williams and the London Symphony Orchestra (the other being Frank Sinatra).
+I, like many other *Star Wars* fans, enjoy listening to John Williams outside of the movies. The music streaming application Spotify has been my medium of choice to listen to Williams' catalogue of *Star Wars* music, and I've listened to a lot of his music. At the end of 2019, Spotify released a personalized report of each user's listening habits, and two of the top three I listened to the most were John Williams and the London Symphony Orchestra (the other being Frank Sinatra).
 
-Spotify's analysis of my listening habits have encouraged me to do some analytics of my own. More specifically, I want to further analyze the music of Star Wars. While I do not have an academic background in music and I consider myself at best an amateur at data analytics, I figured this would help me learn more about two things I am very passionate about: Star Wars music and data analytics.
+```{r echo=FALSE, fig.align="center", out.width='350px', fig.cap="My top artists of 2019."}
+knitr::include_graphics("./img/spotify_recap.PNG")
+```
+
+Spotify's analysis of my listening habits have encouraged me to do some analytics of my own. More specifically, I want to further analyze the music of *Star Wars*. While I do not have an academic background in music and I consider myself at best an amateur at data analytics, I figured this would help me learn more about two things I am very passionate about: *Star Wars* music and data analytics.
 
 ## Setup
 
@@ -94,7 +98,7 @@ That's all we need from Spotify; the rest is up to us on what we want to do with
 jw_us <- jw_complete[grepl("US", jw_complete$available_markets),]
 ```
 
-John Williams is a very accomplished composer who has conducted beautiful and iconic soundtracks for many films. However, this analysis focuses solely on his work for Star Wars.
+John Williams is a very accomplished composer who has conducted beautiful and iconic soundtracks for many films. However, this analysis focuses solely on his work for *Star Wars*.
 
 ```{r eval=FALSE, echo=TRUE}
 jw_sw <- jw_us[grepl("Star Wars:.*Original Motion Picture Soundtrack", jw_us$album_name),]
@@ -134,7 +138,7 @@ write.csv(jw_df, "./data/john_williams_star_wars_data.csv", row.names=FALSE)
 
 ## Data Cleaning
 
-In the previous section, we retrieved John Williams' Star Wars music data from Spotify and removed extraneous columns. This section will show how to clean the data as well as add more columns that describe the data better and more succinctly.
+In the previous section, we retrieved John Williams' *Star Wars* music data from Spotify and removed extraneous columns. This section will show how to clean the data as well as add more columns that describe the data better and more succinctly.
 
 First, let's import the csv file from the previous section and take a look at the columns in the data.
 
@@ -143,7 +147,7 @@ song_data <- read.csv("./data/john_williams_star_wars_data.csv", stringsAsFactor
 colnames(song_data)
 ```
 
-One column I see missing from this collection of Star Wars music is the movie each song is associated with. While I can get that information from the `album_name` column, I would prefer to see an `episode` column that tells me the movie with just a number. 
+One column I see missing from this collection of *Star Wars* music is the movie each song is associated with. While I can get that information from the `album_name` column, I would prefer to see an `episode` column that tells me the movie with just a number. 
 
 ```{r}
 song_data <- song_data %>%
@@ -160,7 +164,7 @@ song_data <- song_data %>%
   )))
 ```
 
-Notice that I'm using the `album_release_year` instead of `album_name`; this is because I am lazy and didn't want to have to use regex if I don't have to. But it would be nice to also have the movie title along with the episode. Thankfully, each album name contiains the movie title and follows the same format of "Star Wars: [Movie Title] (Original Motion Picture Soundtrack)" which will make the regex really easy.
+Notice that I'm using the `album_release_year` instead of `album_name`; this is because I am lazy and didn't want to have to use regex if I don't have to. But it would be nice to also have the `movie_title` along with the `episode`. Thankfully, each `album_name` contiains the `movie_title` and follows the same format of *Star Wars: [Movie Title] (Original Motion Picture Soundtrack)* which will make the regex really easy.
 
 ```{r}
 song_data$movie_title <- song_data$album_name %>%
@@ -250,14 +254,14 @@ song_data %>%
   kable(format = "markdown", digits = 3, row.names = FALSE)
 ```
 
-Being the Star Wars fan I am, I know that there are some songs in the soundtracks that sound a bit more upbeat and different from the rest of the collection. I am able to find these songs based on their `valence` audio feature.
+Being the *Star Wars* fan I am, I know that there are some songs in the soundtracks that sound a bit more upbeat and different from the rest of the collection. I am able to find these songs based on their `valence` audio feature.
 
 ```{r}
 song_data[(song_data$valence > 0.5), c("track_name", "movie_title", "trilogy", "valence")] %>%
   kable(format = "markdown", digits = 3, row.names = FALSE)
 ```
 
-The iconic [Cantina Band](https://www.youtube.com/watch?v=EsvfptdFXf4) and the strange [Lapti Nek](https://www.youtube.com/watch?v=wINM8zsdw9s) are certainly outliers when it comes to the typical Star Wars track (for the Star Wars music conosseuiers, note that [Cantina Band #2](https://www.youtube.com/watch?v=9FVADOLRf54) and [Jedi Rocks](https://www.youtube.com/watch?v=2gnHu1M7jxs) are unfortunately not included in their respective movie soundtracks). Needless to say, if you are looking to book a band that will play more upbeat music from the Star Wars universe, look no further than Figrin D'an and the Modal Nodes or the Max Rebo Band.
+The iconic [Cantina Band](https://www.youtube.com/watch?v=EsvfptdFXf4) and the strange [Lapti Nek](https://www.youtube.com/watch?v=wINM8zsdw9s) are certainly outliers when it comes to the typical *Star Wars* track (for the *Star Wars* music conosseuiers, note that [Cantina Band #2](https://www.youtube.com/watch?v=9FVADOLRf54) and [Jedi Rocks](https://www.youtube.com/watch?v=2gnHu1M7jxs) are unfortunately not included in their respective movie soundtracks). Needless to say, if you are looking to book a band that will play more upbeat music from the *Star Wars* universe, look no further than Figrin D'an and the Modal Nodes or the Max Rebo Band.
 
 ```{r echo=FALSE}
 # colors resemble soundtrack bar color (except phantom menace because its grey)
@@ -314,7 +318,7 @@ plot_data[names(plot_data) != "value"] <- plot_data[names(plot_data) != "value"]
   {lapply(., function(x) {factor(x, levels=unique(x))})}
 ```
 
-Now the data is ready to be plotted. This graph displays every track from Star Wars composed by John Williams which can be filtered by trilogy, movie, and even the tracks themselves. The graph and table respond to the filters applied, so the reader has many ways to digest the data.
+Now the data is ready to be plotted. This graph displays every track from *Star Wars* composed by John Williams which can be filtered by trilogy, movie, and even the tracks themselves. The graph and table respond to the filters applied, so the reader has many ways to digest the data.
 
 ```{r, echo=FALSE}
 # Define UI
@@ -427,4 +431,4 @@ shinyApp(ui = ui, server = server, options = list(width="120%", height=650))
 
 ## Final Notes
 
-I hope you learned something new from this blog---whether it's a new technique in programming with R, something new about the music of Star Wars, or even just the basics of using the Spotify API. If you found this interesting or even so far as enjoyed it, feel free to check out more about me or my work at my [website](http://borovinsky.com/).
+I hope you learned something new from this blog---whether it's a new technique in programming with R, something new about the music of *Star Wars*, or even just the basics of using the Spotify API. If you found this interesting or even so far as enjoyed it, feel free to check out more of my work at my [website](http://borovinsky.com/).
