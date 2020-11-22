@@ -1,10 +1,8 @@
-library(dplyr, quietly = TRUE)
-#library(dplyr, warn.conflicts = FALSE)
-#library(GGally, quietly = TRUE)
-library(fmsb)
+library(dplyr)
+library(shiny)
+library(shinyWidgets)
 library(tidyr)
 library(ggplot2)
-#library(ggthemes) # for FiveThirtyEight-style plot
 
 # CLEAR WORKSPACE AND PLOT WINDOW
 rm(list=ls())
@@ -64,62 +62,41 @@ song_data <- song_data %>%
     key_name:key_mode
   )
 
-og_data <- song_data %>%
-  filter(trilogy=="Original")
+song_data <- song_data %>%
+  select(
+    track_name,
+    movie_title,
+    trilogy,
+    danceability:valence
+  )
 
-categories <- c("danceability", 
-                "energy", 
-                "speechiness", 
-                "acousticness", 
-                "instrumentalness", 
-                "liveness", 
-                "valence")
-cat_col <- which(colnames(song_data) %in% categories)
+# CONVERT MOVIE TITLE FROM CHARACTER TO FACTOR
+song_data$movie_title <- song_data$movie_title %>%
+  {factor(., levels=unique(.))}
 
-#df <- og_data[og_data$episode==4,]
+# GET METRIC NAMES
+categories <- colnames(song_data)[-c(1:3)]
 
-# ggparcoord(df,
-#   columns=cat_col,
-#   groupColumn=ifelse(length(unique("movie_title"))==1,"track_name","movie_title"),
-#   scale="globalminmax",
-#   showPoints=FALSE,
-#   alphaLines=1
-# ) +
-#   theme_minimal() +
-#   scale_x_discrete(expand = c(0,0)) +
-#   # scale_color_manual(values=c("#2E66B1", "#E13028", "#188655", 
-#   #                             "#B7ADB0", "#D79E2A", "#8956A3", 
-#   #                             "#E9D84F", "#C60B36", "#49508D")) +
-#   labs(x="",y="strength") +
-#   theme(text = element_text(size = 16),
-#         legend.title = element_blank())
+# AVERAGE VALUES
+song_data %>%
+  group_by(movie_title) %>%
+  summarise(count = n(),
+            across(all_of(categories), ~ mean(.x)),
+            .groups = "keep")
 
-# radar_data <- rbind(rep(1,ncol(og_data)),rep(0,ncol(og_data)),og_data)
-# radarchart(radar_data[,10:16], axistype = 4,
-#            plwd = 2, plty = 1, pty = 32,
-#            cglcol = "grey", cglty = 1, axislabcol = "grey", caxislabels = seq(0, 1, 5), cglwd = 0.8,
-#            vlcex = 0.8
-#            )
+song_data %>%
+  group_by(trilogy) %>%
+  summarise(count = n(),
+            across(all_of(categories), ~ mean(.x)),
+            .groups = "keep")
 
+# ANOMALIES
+song_data[(song_data$valence > 0.5), c("track_name", "movie_title", "trilogy", "valence")]
 
-# WRITE DATA TO CSV
-#write.csv(song_data,"./data/song_data.csv", row.names = FALSE)
+# EXPORT SONG DATA TO CSV
+#write.csv(song_data, file = "./data/song_data.csv")
 
-plot_data <- song_data %>%
-  pivot_longer(cols = categories, 'name', 'value') %>%
-  select("movie_title", "trilogy", "track_name", "name", "value")
-
-plot_data$track_name <- plot_data$track_name %>%
-  #as.character() %>%
-  {ifelse(nchar(.)>35, paste0(trimws(substr(., 1, 35-5)),"..."), .)}
-
-plot_data[names(plot_data) != "value"] <- plot_data[names(plot_data) != "value"] %>%
-  {lapply(., function(x) {factor(x, levels=unique(x))})}
-
-filter_data <- plot_data %>%
-  filter(movie_title=="The Force Awakens")
-
-
+# ASSIGN COLORS
 # colors resemble soundtrack bar color (except phantom menace because its grey)
 movie_colors <- c("A New Hope"="#2E66B1", 
                   "The Empire Strikes Back"="#E13028",
@@ -134,65 +111,119 @@ track_colors <- c("#2E66B1", "#E13028", "#188655",
                   "#492E27", "#D79E2A", "#8956A3", 
                   "#E9D84F", "#C60B36", "#49508D")
 
-col <- if (length(unique(filter_data$movie_title))>1) {movie_colors} else {track_colors}
+# GET DATA IN TIDY FORMAT
+plot_data <- song_data %>%
+  pivot_longer(cols = all_of(categories), "name", "value") %>%
+  select("movie_title", "trilogy", "track_name", "name", "value")
 
-# g_back <- ggplot() +
-#   geom_line(aes(x=name, y=value, group=track_name, color=movie_title), 
-#             data=plot_data, alpha=0.2, #color="grey",
-#             show.legend=FALSE) +
-#   scale_color_manual(values=rep(sw_colors))
-# g_back
-# g_dynamic <- ggplot() +
-#   geom_line(aes(x=name, y=value, group=track_name, color=movie_title), 
-#             data=filter_data, alpha=1.0, lwd=1, 
-#             show.legend=TRUE) +
-#   scale_color_manual(values=rep(sw_colors, length.out=3))
-# g_dynamic
+# TRUNCATE LONGER TRACK NAMES
+char_lim <- 35
+plot_data$track_name <- plot_data$track_name %>%
+  {ifelse(nchar(.) > char_lim, paste0(trimws(substr(., 1, char_lim-5)),"..."), .)}
 
-ggplot() +
-  geom_line(aes(x=name, y=value, group=track_name, color=movie_title), 
-            data=plot_data, alpha=1.0, color="grey",
-            show.legend=FALSE) +
-  geom_line(aes(x=name, y=value, group=track_name, color=track_name), 
-            data=filter_data, alpha=0.8, lwd=1.5, 
-            show.legend=TRUE) +
-  scale_color_manual(values=rep(col, length.out=44)) +
-  guides(color=guide_legend(override.aes = list(size=1, alpha=1.0))) +
-  theme_minimal() +
-  coord_cartesian(ylim = c(0, 1)) + 
-  scale_x_discrete(expand = c(0,0)) +
-  labs(x="",y="strength") +
-  theme(text = element_text(size = 16),
-        panel.background = element_rect(fill = "transparent", color = NA),
-        # plot.margin = unit(c(0.5, 13.0, 0.5, 0.5), "cm"),
-        # legend.position = c(1.4, 0.5),
-        legend.title = element_blank(),
-        legend.text = element_text(size=10),
-        #legend.key.width = unit(1, "cm"),
-        axis.text = element_text(color = "black"),
-        axis.text.x = element_text(angle = 25, vjust = 0.7, hjust=0.7))
+# CONVERT CHARACTER COLUMNS TO FACTORS
+plot_data[names(plot_data) != "value"] <- plot_data[names(plot_data) != "value"] %>%
+  {lapply(., function(x) {factor(x, levels=unique(x))})}
 
-song_data$movie_title <- song_data$movie_title %>%
-  {factor(., levels=unique(.))}
-song_data %>%
-  group_by(movie_title) %>%
-  summarise(count = n(),
-            across(categories, ~ mean(.x)))
-tril_data <- song_data %>%
-  group_by(trilogy) %>%
-  summarise(count = n(),
-            across(categories, ~ mean(.x)))
+# SETUP THE SHINY APP
+ui <- fluidPage(
+  
+  sidebarLayout(
+    sidebarPanel(
+      
+      selectizeGroupUI(
+        id = "my-filters",
+        inline = FALSE,
+        params = list(
+          trilogy <- list(inputId = "trilogy", title = "Select Trilogy", placeholder = "select"),
+          movie <- list(inputId = "movie_title", title = "Select Movie", placeholder = "select"),
+          track <- list(inputId = "track_name", title = "Select Track", placeholder = "select")
+        )
+      )
+      
+    ),
+    
+    mainPanel(
+      
+      plotOutput(
+        outputId = "parallelcoordinates",
+        width = "100%",
+        height = "400px"
+      ),
+      br()
+      
+    )
+    
+  ),
+  
+  fluidRow(
+    
+    div(tableOutput("table"), style = "font-size: 90%; display: flex; justify-content: center; overflow-y: scroll; height: 200px")
+    
+  )
+  
+)
+server <- function(input, output) {
+  
+  res_tab <- callModule(
+    module = selectizeGroupServer,
+    id = "my-filters",
+    data = song_data,
+    vars = c("trilogy", "movie_title", "track_name")
+  )
+  
+  
+  res_mod <- callModule(
+    module = selectizeGroupServer,
+    id = "my-filters",
+    data = plot_data,
+    vars = c("trilogy", "movie_title", "track_name")
+  )
+  
+  output$parallelcoordinates <- renderPlot({
+    
+    plot_cond <- (length(unique(res_mod()$movie_title)) > 1) & 
+      (length(unique(res_mod()$track_name)) > 5)
+    plot_linetype <- if (plot_cond) {res_mod()$movie_title} else {res_mod()$track_name}
+    plot_colors <- if (plot_cond) {movie_colors} else {track_colors}
+    
+    ggplot() +
+      geom_line(aes(x=name, y=value, group=track_name, color=movie_title), 
+                data=plot_data, alpha=1.0, color="grey",
+                show.legend=FALSE) +
+      geom_line(aes(x=name, y=value, group=track_name,
+                    color=plot_linetype), 
+                data=res_mod(), alpha=0.7, lwd=1.5, 
+                show.legend=TRUE) +
+      scale_color_manual(values=rep(
+        plot_colors,
+        #if (length(unique(res_mod()$movie_title))>1) {movie_colors} else {track_colors}, 
+        length.out=nrow(res_mod())
+      )) +
+      guides(color=guide_legend(override.aes = list(size=1, alpha=1.0))) +
+      theme_minimal() +
+      coord_cartesian(ylim = c(0, 1)) + 
+      scale_x_discrete(expand = c(0,0)) +
+      labs(x="",y="strength") +
+      theme(text = element_text(size = 16),
+            panel.background = element_rect(fill = "transparent", color = NA),
+            # plot.margin = unit(c(0.5, 13.0, 0.5, 0.5), "cm"),
+            # legend.position = c(1.4, 0.5),
+            legend.title = element_blank(),
+            legend.text = element_text(size=10),
+            #legend.key.width = unit(1, "cm"),
+            axis.text = element_text(color = "black"),
+            axis.text.x = element_text(angle = 25, vjust = 0.7, hjust=0.7))
+    
+  })
+  
+  output$table <- renderTable({
+    
+    res_tab()
+    
+  }, striped = TRUE, hover = TRUE)
+  
+}
 
-song_data[order(-song_data$valence), c("track_name", "movie_title", "trilogy", "valence")] %>% 
-  head(5)
-
-radar_data <- rbind(rep(1,ncol(tril_data)),rep(0,ncol(tril_data)),tril_data)
-radarchart(radar_data[,categories], axistype = 4,
-           plwd = 2, plty = 1, pty = 32,
-           cglcol = "grey", cglty = 1, axislabcol = "grey", caxislabels = seq(0, 1, 5), cglwd = 0.8,
-           vlcex = 0.8
-           )
-legend(x=1, y=0.7, legend = tril_data$trilogy,
-       bty = "n", lwd=1 , col=c("red", "blue", "green"), 
-       text.col = "black", cex=0.8, pt.cex=1, y.intersp = 0.5, seg.len = 0.5)
-
+# RUN THE APP
+shinyApp(ui = ui, server = server, options = list(width="120%", height=650))

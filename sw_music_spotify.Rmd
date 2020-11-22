@@ -1,7 +1,7 @@
 ---
 title: "Star Wars Music Analysis Using Spotify API"
 author: "Ben Borovinsky"
-date: '`r Sys.Date()`'
+date: 'Nov. 22, 2020'
 output: html_document
 runtime: shiny
 ---
@@ -28,7 +28,7 @@ knitr::include_graphics("./img/spotify_recap.PNG")
 
 Spotify's analysis of my listening habits has encouraged me to do some analytics of my own. More specifically, I want to analyze the music of *Star Wars*. While I do not have any background in music, I figured this would help me learn more about two things I am very passionate about: *Star Wars* music and data analytics.
 
-This will serve as a tutorial on using the Spotify API and doing some quick analyses with its data.
+This will serve as a brief tutorial on using the Spotify API and doing some quick analyses with its data.
 
 ## Setup
 
@@ -142,8 +142,13 @@ In the previous section, I retrieved John Williams' *Star Wars* music data from 
 
 First, let's import the csv file from the previous section and take a look at the columns in the data.
 
-```{r}
+```{r eval=FALSE, echo=TRUE}
 song_data <- read.csv("./data/john_williams_star_wars_data.csv", stringsAsFactors=FALSE)
+colnames(song_data)
+```
+
+```{r eval=TRUE, echo=FALSE}
+song_data <- readRDS("./data/john_williams_star_wars_data.rds")
 colnames(song_data)
 ```
 
@@ -281,18 +286,6 @@ track_colors <- c("#2E66B1", "#E13028", "#188655",
                   "#E9D84F", "#C60B36", "#49508D")
 ```
 
-```{r eval=FALSE, include=FALSE}
-radar_data <- rbind(rep(1,ncol(movie_data)),rep(0,ncol(movie_data)),movie_data)
-radarchart(radar_data[,categories], axistype = 4,
-           plwd = 2, plty = 1, pty = 32,
-           pcol = track_colors, cglcol = "grey", cglty = 1, axislabcol = "grey", 
-           caxislabels = seq(0, 1, 5), cglwd = 0.8, vlcex = 1)
-legend(x=1.4, y=0.7, legend = movie_data$movie_title,
-       bty = "n", lwd=1 , col=track_colors, 
-       text.col = "black", cex=0.8, pt.cex=1, y.intersp = 1, seg.len = 1)
-
-```
-
 ## Interactive Application
 
 The tables above are a good place to start for some insight; however, being able to display the data effectively is very important in order to visualize and understand the data better. The problem with this data is that there are 150+ tracks that should be displayed, so making the graph interactive is as desirable as it is tricky. 
@@ -323,13 +316,8 @@ plot_data[names(plot_data) != "value"] <- plot_data[names(plot_data) != "value"]
 Now the data is ready to be plotted. This graph displays every track from *Star Wars* composed by John Williams which can be filtered by trilogy, movie, and even the tracks themselves. The graph and table react to the filters applied, so the user has a lot of freedom in digesting the data.
 
 ```{r, echo=FALSE}
-# Define UI
 ui <- fluidPage(
-    
-    # Application title
-    #titlePanel("Star Wars X Spotify Analysis"),
-    
-    # Sidebar with dropdown input selectors
+  
     sidebarLayout(
         sidebarPanel(
           
@@ -345,7 +333,6 @@ ui <- fluidPage(
             
         ),
         
-        # Show a plot of the generated distribution
         mainPanel(
             
             plotOutput(
@@ -400,7 +387,6 @@ server <- function(input, output) {
                   show.legend=TRUE) +
         scale_color_manual(values=rep(
           plot_colors,
-          #if (length(unique(res_mod()$movie_title))>1) {movie_colors} else {track_colors}, 
           length.out=nrow(res_mod())
         )) +
         guides(color=guide_legend(override.aes = list(size=1, alpha=1.0))) +
@@ -410,11 +396,8 @@ server <- function(input, output) {
         labs(x="",y="strength") +
         theme(text = element_text(size = 16),
               panel.background = element_rect(fill = "transparent", color = NA),
-              # plot.margin = unit(c(0.5, 13.0, 0.5, 0.5), "cm"),
-              # legend.position = c(1.4, 0.5),
               legend.title = element_blank(),
               legend.text = element_text(size=10),
-              #legend.key.width = unit(1, "cm"),
               axis.text = element_text(color = "black"),
               axis.text.x = element_text(angle = 25, vjust = 0.7, hjust=0.7))
         
@@ -427,6 +410,7 @@ server <- function(input, output) {
     }, striped = TRUE, hover = TRUE)
     
 }
+
 # Run the application 
 shinyApp(ui = ui, server = server, options = list(width="120%", height=650))
 ```
