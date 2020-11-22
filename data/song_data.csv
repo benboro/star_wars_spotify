@@ -1,152 +1,152 @@
-"episode","movie_title","trilogy","track_number","track_name","artist_name","album_name","duration_ms","album_release_year","danceability","energy","speechiness","acousticness","instrumentalness","liveness","valence","tempo","loudness","key_name","mode_name","key_mode"
-4,"A New Hope","Original",1,"Main Title","John Williams","Star Wars: A New Hope (Original Motion Picture Soundtrack)",324226,1977,0.243,0.417,0.0392,0.684,0.912,0.13,0.175,99.805,-11.73,"C","major","C major"
-4,"A New Hope","Original",2,"Imperial Attack","John Williams","Star Wars: A New Hope (Original Motion Picture Soundtrack)",378320,1977,0.168,0.181,0.0358,0.888,0.888,0.0798,0.0377,81.695,-15.593,"E","major","E major"
-4,"A New Hope","Original",3,"Princess Leia's Theme","John Williams","Star Wars: A New Hope (Original Motion Picture Soundtrack)",263226,1977,0.0784,0.0649,0.0425,0.857,0.951,0.0712,0.0308,73.13,-18.985,"F","major","F major"
-4,"A New Hope","Original",4,"The Desert and the Robot Auction","John Williams","Star Wars: A New Hope (Original Motion Picture Soundtrack)",172320,1977,0.271,0.0329,0.0372,0.817,0.871,0.0775,0.054,118.569,-24.583,"C#","major","C# major"
-4,"A New Hope","Original",5,"Ben's Death and TIE Fighter Attack","John Williams","Star Wars: A New Hope (Original Motion Picture Soundtrack)",233760,1977,0.346,0.322,0.0449,0.759,0.93,0.0931,0.0976,73.897,-13.737,"D","minor","D minor"
-4,"A New Hope","Original",6,"The Little People Work","John Williams","Star Wars: A New Hope (Original Motion Picture Soundtrack)",248333,1977,0.449,0.0534,0.0332,0.896,0.518,0.216,0.0584,115.118,-24.646,"G","major","G major"
-4,"A New Hope","Original",7,"Rescue of the Princess","John Williams","Star Wars: A New Hope (Original Motion Picture Soundtrack)",287506,1977,0.29,0.361,0.0422,0.798,0.765,0.116,0.139,136.566,-14.791,"E","minor","E minor"
-4,"A New Hope","Original",8,"Inner City","John Williams","Star Wars: A New Hope (Original Motion Picture Soundtrack)",254533,1977,0.223,0.0757,0.0366,0.849,0.9,0.13,0.0398,104.036,-18.807,"F","major","F major"
-4,"A New Hope","Original",9,"Cantina Band","John Williams","Star Wars: A New Hope (Original Motion Picture Soundtrack)",164306,1977,0.699,0.419,0.134,0.255,0.0239,0.0471,0.822,131.629,-15.133,"C","major","C major"
-4,"A New Hope","Original",10,"The Land of the Sand People","John Williams","Star Wars: A New Hope (Original Motion Picture Soundtrack)",175786,1977,0.299,0.173,0.0522,0.898,0.616,0.123,0.0381,148.621,-18.186,"D","minor","D minor"
-4,"A New Hope","Original",11,"Mouse Robot and Blasting Off","John Williams","Star Wars: A New Hope (Original Motion Picture Soundtrack)",243880,1977,0.156,0.156,0.038,0.747,0.463,0.172,0.0566,74.83,-17.088,"D","minor","D minor"
-4,"A New Hope","Original",12,"The Return Home","John Williams","Star Wars: A New Hope (Original Motion Picture Soundtrack)",171893,1977,0.0933,0.131,0.0384,0.859,0.437,0.0761,0.0345,77.046,-17.31,"C#","major","C# major"
-4,"A New Hope","Original",13,"The Walls Converge","John Williams","Star Wars: A New Hope (Original Motion Picture Soundtrack)",276480,1977,0.197,0.108,0.036,0.859,0.749,0.131,0.0751,96.387,-20.444,"D","major","D major"
-4,"A New Hope","Original",14,"The Princess Appears","John Williams","Star Wars: A New Hope (Original Motion Picture Soundtrack)",247493,1977,0.185,0.0599,0.0428,0.956,0.872,0.125,0.0393,77.707,-27.514,"G#","major","G# major"
-4,"A New Hope","Original",15,"The Last Battle","John Williams","Star Wars: A New Hope (Original Motion Picture Soundtrack)",729160,1977,0.292,0.249,0.036,0.82,0.836,0.36,0.11,136.715,-14.242,"D","minor","D minor"
-4,"A New Hope","Original",16,"The Throne Room and End Title","John Williams","Star Wars: A New Hope (Original Motion Picture Soundtrack)",334426,1977,0.297,0.372,0.0331,0.786,0.88,0.0758,0.191,57.633,-11.987,"C","major","C major"
-5,"The Empire Strikes Back","Original",1,"Star Wars (Main Theme)","John Williams","Star Wars: The Empire Strikes Back (Original Motion Picture Soundtrack)",346933,1980,0.177,0.295,0.061,0.39,0.591,0.0684,0.0825,83.409,-14.581,"F","major","F major"
-5,"The Empire Strikes Back","Original",2,"Yoda's Theme","John Williams","Star Wars: The Empire Strikes Back (Original Motion Picture Soundtrack)",207666,1980,0.184,0.0529,0.0398,0.718,0.839,0.117,0.0463,78.481,-22.879,"C","major","C major"
-5,"The Empire Strikes Back","Original",3,"The Training of a Jedi Knight","John Williams","Star Wars: The Empire Strikes Back (Original Motion Picture Soundtrack)",187546,1980,0.235,0.0518,0.0406,0.858,0.821,0.254,0.131,176.718,-28.472,"D","minor","D minor"
-5,"The Empire Strikes Back","Original",4,"The Heroics of Luke and Han","John Williams","Star Wars: The Empire Strikes Back (Original Motion Picture Soundtrack)",349786,1980,0.241,0.289,0.04,0.449,0.817,0.158,0.0875,74.176,-17.797,"F","major","F major"
-5,"The Empire Strikes Back","Original",5,"The Imperial March (Darth Vader's Theme)","John Williams","Star Wars: The Empire Strikes Back (Original Motion Picture Soundtrack)",179573,1980,0.577,0.379,0.0368,0.753,0.955,0.126,0.284,103.112,-13.82,"G","minor","G minor"
-5,"The Empire Strikes Back","Original",6,"Departure of Boba Fett","John Williams","Star Wars: The Empire Strikes Back (Original Motion Picture Soundtrack)",186626,1980,0.212,0.237,0.0423,0.776,0.879,0.0998,0.0393,138.904,-16.59,"D","major","D major"
-5,"The Empire Strikes Back","Original",7,"Han Solo and the Princess","John Williams","Star Wars: The Empire Strikes Back (Original Motion Picture Soundtrack)",207426,1980,0.156,0.0229,0.0368,0.391,0.887,0.0946,0.035,81.895,-25.37,"B","minor","B minor"
-5,"The Empire Strikes Back","Original",8,"Hyperspace","John Williams","Star Wars: The Empire Strikes Back (Original Motion Picture Soundtrack)",243520,1980,0.312,0.29,0.0543,0.623,0.901,0.0736,0.149,93.401,-20.294,"C","major","C major"
-5,"The Empire Strikes Back","Original",9,"The Battle in the Snow","John Williams","Star Wars: The Empire Strikes Back (Original Motion Picture Soundtrack)",222800,1980,0.248,0.547,0.0427,0.536,0.889,0.0941,0.278,87.15,-13.829,"C","major","C major"
-5,"The Empire Strikes Back","Original",10,"The Asteroid Field","John Williams","Star Wars: The Empire Strikes Back (Original Motion Picture Soundtrack)",255720,1980,0.31,0.379,0.0391,0.391,0.934,0.067,0.155,84.09,-14.322,"F","major","F major"
-5,"The Empire Strikes Back","Original",11,"The City in the Clouds","John Williams","Star Wars: The Empire Strikes Back (Original Motion Picture Soundtrack)",388280,1980,0.101,0.043,0.0414,0.861,0.617,0.504,0.0353,90.097,-22.975,"F","minor","F minor"
-5,"The Empire Strikes Back","Original",12,"Rebels at Bay","John Williams","Star Wars: The Empire Strikes Back (Original Motion Picture Soundtrack)",321453,1980,0.292,0.31,0.0362,0.534,0.924,0.112,0.14,75.05,-15.322,"G","major","G major"
-5,"The Empire Strikes Back","Original",13,"Yoda and the Force","John Williams","Star Wars: The Empire Strikes Back (Original Motion Picture Soundtrack)",242466,1980,0.161,0.0329,0.0439,0.874,0.784,0.123,0.0368,109.129,-26.827,"G#","major","G# major"
-5,"The Empire Strikes Back","Original",14,"The Duel","John Williams","Star Wars: The Empire Strikes Back (Original Motion Picture Soundtrack)",242546,1980,0.156,0.369,0.04,0.798,0.918,0.238,0.0723,79.677,-14.582,"G","major","G major"
-5,"The Empire Strikes Back","Original",15,"The Magic Tree","John Williams","Star Wars: The Empire Strikes Back (Original Motion Picture Soundtrack)",213920,1980,0.17,0.114,0.047,0.605,0.852,0.263,0.037,113.874,-22.389,"D#","major","D# major"
-5,"The Empire Strikes Back","Original",16,"Lando's Palace","John Williams","Star Wars: The Empire Strikes Back (Original Motion Picture Soundtrack)",232386,1980,0.178,0.0366,0.0413,0.856,0.787,0.124,0.0375,129.282,-24.736,"F","major","F major"
-5,"The Empire Strikes Back","Original",17,"Finale","John Williams","Star Wars: The Empire Strikes Back (Original Motion Picture Soundtrack)",383360,1980,0.22,0.263,0.0338,0.559,0.897,0.371,0.122,105.105,-14.081,"C","major","C major"
-6,"Return of the Jedi","Original",1,"Main Title (The Story Continues)","John Williams","Star Wars: Return of the Jedi (Original Motion Picture Soundtrack)",310306,1983,0.11,0.233,0.0381,0.628,0.81,0.146,0.0797,75.839,-14.921,"A#","major","A# major"
-6,"Return of the Jedi","Original",2,"Into the Trap","John Williams","Star Wars: Return of the Jedi (Original Motion Picture Soundtrack)",157173,1983,0.43,0.363,0.0606,0.827,0.885,0.108,0.225,125.577,-14.172,"G","major","G major"
-6,"Return of the Jedi","Original",3,"Luke and Leia","John Williams","Star Wars: Return of the Jedi (Original Motion Picture Soundtrack)",286813,1983,0.17,0.0559,0.0402,0.935,0.784,0.118,0.0348,92.436,-21.059,"A","major","A major"
-6,"Return of the Jedi","Original",4,"Parade of the Ewoks","John Williams","Star Wars: Return of the Jedi (Original Motion Picture Soundtrack)",205560,1983,0.451,0.238,0.0425,0.881,0.897,0.109,0.221,118.495,-16.592,"F","major","F major"
-6,"Return of the Jedi","Original",5,"Han Solo Returns (At the Court of Jabba the Hutt)","John Williams","Star Wars: Return of the Jedi (Original Motion Picture Soundtrack)",250146,1983,0.12,0.0841,0.0401,0.908,0.512,0.0743,0.036,79.399,-21.961,"D","major","D major"
-6,"Return of the Jedi","Original",6,"Lapti Nek (Jabba's Palace Band)","John Williams","Star Wars: Return of the Jedi (Original Motion Picture Soundtrack)",169800,1983,0.842,0.56,0.0826,0.136,0.0863,0.09,0.73,131.306,-14.574,"C","major","C major"
-6,"Return of the Jedi","Original",7,"The Forest Battle","John Williams","Star Wars: Return of the Jedi (Original Motion Picture Soundtrack)",242880,1983,0.527,0.484,0.0391,0.83,0.795,0.0956,0.3,79.356,-13.324,"C","minor","C minor"
-6,"Return of the Jedi","Original",8,"Rebel Briefing","John Williams","Star Wars: Return of the Jedi (Original Motion Picture Soundtrack)",143080,1983,0.145,0.181,0.0442,0.76,0.656,0.102,0.0329,103.082,-17.833,"C","minor","C minor"
-6,"Return of the Jedi","Original",9,"The Emperor","John Williams","Star Wars: Return of the Jedi (Original Motion Picture Soundtrack)",164613,1983,0.139,0.144,0.0372,0.94,0.965,0.114,0.0368,141.973,-16.415,"F#","minor","F# minor"
-6,"Return of the Jedi","Original",10,"The Return of the Jedi","John Williams","Star Wars: Return of the Jedi (Original Motion Picture Soundtrack)",303173,1983,0.246,0.428,0.0379,0.824,0.899,0.133,0.135,147.953,-12.771,"G","major","G major"
-6,"Return of the Jedi","Original",11,"Ewok Celebration and Finale","John Williams","Star Wars: Return of the Jedi (Original Motion Picture Soundtrack)",481173,1983,0.392,0.395,0.0727,0.792,0.797,0.223,0.325,125.081,-12.99,"C","major","C major"
-1,"The Phantom Menace","Prequel",1,"Star Wars Main Title and the Arrival at Naboo","John Williams","Star Wars: The Phantom Menace (Original Motion Picture Soundtrack)",175773,1999,0.127,0.369,0.0392,0.524,0.905,0.165,0.192,79.541,-13.852,"F","major","F major"
-1,"The Phantom Menace","Prequel",2,"Duel of the Fates","John Williams","Star Wars: The Phantom Menace (Original Motion Picture Soundtrack)",254346,1999,0.471,0.411,0.041,0.733,0.853,0.28,0.282,79.986,-15.755,"D","major","D major"
-1,"The Phantom Menace","Prequel",3,"Anakin's Theme","John Williams","Star Wars: The Phantom Menace (Original Motion Picture Soundtrack)",187586,1999,0.186,0.111,0.0505,0.443,0.908,0.24,0.0339,74.003,-22.164,"F","major","F major"
-1,"The Phantom Menace","Prequel",4,"Jar Jar's Introduction and the Swim to Otoh Gunga","John Williams","Star Wars: The Phantom Menace (Original Motion Picture Soundtrack)",305880,1999,0.198,0.052,0.0334,0.93,0.917,0.088,0.0394,91.315,-25.782,"C","major","C major"
-1,"The Phantom Menace","Prequel",5,"The Sith Spacecraft and the Droid Battle","John Williams","Star Wars: The Phantom Menace (Original Motion Picture Soundtrack)",156360,1999,0.313,0.621,0.12,0.49,0.914,0.166,0.256,114.04,-14.685,"C","major","C major"
-1,"The Phantom Menace","Prequel",6,"The Trip to the Naboo Temple and the Audience with Boss Nass","John Williams","Star Wars: The Phantom Menace (Original Motion Picture Soundtrack)",249573,1999,0.224,0.0481,0.0319,0.916,0.864,0.142,0.0453,84.995,-27.208,"C","minor","C minor"
-1,"The Phantom Menace","Prequel",7,"The Arrival at Tatooine and the Flag Parade","John Williams","Star Wars: The Phantom Menace (Original Motion Picture Soundtrack)",243053,1999,0.277,0.316,0.0432,0.787,0.617,0.137,0.0798,92.783,-16.298,"C","major","C major"
-1,"The Phantom Menace","Prequel",8,"He Is the Chosen One","John Williams","Star Wars: The Phantom Menace (Original Motion Picture Soundtrack)",234640,1999,0.0622,0.034,0.0414,0.941,0.923,0.152,0.0356,68.173,-24.722,"F","major","F major"
-1,"The Phantom Menace","Prequel",9,"Anakin Defeats Sebulba","John Williams","Star Wars: The Phantom Menace (Original Motion Picture Soundtrack)",262680,1999,0.217,0.43,0.0505,0.709,0.704,0.283,0.0962,62.946,-14.087,"E","minor","E minor"
-1,"The Phantom Menace","Prequel",10,"Passage Through the Planet Core","John Williams","Star Wars: The Phantom Menace (Original Motion Picture Soundtrack)",277373,1999,0.0885,0.0593,0.05,0.777,0.865,0.0447,0.0374,77.344,-21.209,"C","major","C major"
-1,"The Phantom Menace","Prequel",11,"Watto's Deal and Kids at Play","John Williams","Star Wars: The Phantom Menace (Original Motion Picture Soundtrack)",296200,1999,0.182,0.0294,0.0351,0.908,0.904,0.0989,0.0374,102.378,-28.048,"C","major","C major"
-1,"The Phantom Menace","Prequel",12,"Panaka and the Queen's Protectors","John Williams","Star Wars: The Phantom Menace (Original Motion Picture Soundtrack)",202346,1999,0.366,0.481,0.128,0.594,0.695,0.306,0.177,115.054,-13.485,"F","major","F major"
-1,"The Phantom Menace","Prequel",13,"Queen Amidala and the Naboo Palace","John Williams","Star Wars: The Phantom Menace (Original Motion Picture Soundtrack)",290306,1999,0.17,0.0413,0.0384,0.798,0.888,0.0924,0.034,113.977,-22.738,"D","minor","D minor"
-1,"The Phantom Menace","Prequel",14,"The Droid Invasion and the Appearance of Darth Maul","John Williams","Star Wars: The Phantom Menace (Original Motion Picture Soundtrack)",311293,1999,0.274,0.242,0.0461,0.781,0.874,0.0999,0.0393,87.098,-17.854,"G#","major","G# major"
-1,"The Phantom Menace","Prequel",15,"Qui-Gon's Noble End","John Williams","Star Wars: The Phantom Menace (Original Motion Picture Soundtrack)",226360,1999,0.289,0.282,0.0475,0.254,0.34,0.108,0.138,135.961,-17.086,"C","major","C major"
-1,"The Phantom Menace","Prequel",16,"The High Council Meeting and Qui-Gon's Funeral","John Williams","Star Wars: The Phantom Menace (Original Motion Picture Soundtrack)",186786,1999,0.077,0.072,0.0396,0.886,0.862,0.113,0.0345,76.569,-26.877,"F#","minor","F# minor"
-1,"The Phantom Menace","Prequel",17,"Augie's Great Municipal Band and End Credits","John Williams","Star Wars: The Phantom Menace (Original Motion Picture Soundtrack)",577426,1999,0.217,0.407,0.0812,0.45,0.919,0.235,0.0654,80.005,-15.324,"D","major","D major"
-2,"Attack of the Clones","Prequel",1,"Star Wars Main Title and Ambush on Coruscant","John Williams","Star Wars: Attack of the Clones (Original Motion Picture Soundtrack)",229466,2002,0.0911,0.286,0.0422,0.645,0.944,0.203,0.0515,71.832,-15.819,"F","major","F major"
-2,"Attack of the Clones","Prequel",2,"Across the Stars (Love Theme from ""Star Wars: Attack of the Clones"")","John Williams","Star Wars: Attack of the Clones (Original Motion Picture Soundtrack)",333346,2002,0.116,0.13,0.0355,0.774,0.914,0.111,0.0666,80.611,-18.278,"C","major","C major"
-2,"Attack of the Clones","Prequel",3,"Zam the Assassin and the Chase Through Coruscant","John Williams","Star Wars: Attack of the Clones (Original Motion Picture Soundtrack)",668386,2002,0.424,0.315,0.0526,0.621,0.727,0.112,0.0584,80.971,-18.128,"C","major","C major"
-2,"Attack of the Clones","Prequel",4,"Yoda and the Younglings","John Williams","Star Wars: Attack of the Clones (Original Motion Picture Soundtrack)",237760,2002,0.128,0.00892,0.0419,0.982,0.962,0.107,0.0475,66.833,-33.337,"E","minor","E minor"
-2,"Attack of the Clones","Prequel",5,"Departing Coruscant","John Williams","Star Wars: Attack of the Clones (Original Motion Picture Soundtrack)",105533,2002,0.125,0.0314,0.0392,0.973,0.957,0.114,0.0383,67.563,-22.334,"A","minor","A minor"
-2,"Attack of the Clones","Prequel",6,"Anakin and Padmé","John Williams","Star Wars: Attack of the Clones (Original Motion Picture Soundtrack)",237160,2002,0.171,0.0127,0.041,0.979,0.945,0.0985,0.038,59.34,-32.066,"F","major","F major"
-2,"Attack of the Clones","Prequel",7,"Jango's Escape","John Williams","Star Wars: Attack of the Clones (Original Motion Picture Soundtrack)",227880,2002,0.353,0.394,0.0393,0.725,0.919,0.116,0.195,156.127,-15.915,"G","major","G major"
-2,"Attack of the Clones","Prequel",8,"The Meadow Picnic","John Williams","Star Wars: Attack of the Clones (Original Motion Picture Soundtrack)",254680,2002,0.145,0.0669,0.0384,0.874,0.836,0.098,0.0595,66.015,-22.852,"G","major","G major"
-2,"Attack of the Clones","Prequel",9,"Bounty Hunter's Pursuit","John Williams","Star Wars: Attack of the Clones (Original Motion Picture Soundtrack)",202346,2002,0.164,0.109,0.041,0.789,0.867,0.0812,0.0392,83.18,-18.876,"G#","major","G# major"
-2,"Attack of the Clones","Prequel",10,"Return to Tatooine","John Williams","Star Wars: Attack of the Clones (Original Motion Picture Soundtrack)",416106,2002,0.0844,0.0501,0.0371,0.87,0.94,0.095,0.0361,84.416,-26.518,"F","minor","F minor"
-2,"Attack of the Clones","Prequel",11,"The Tusken Camp and the Homestead","John Williams","Star Wars: Attack of the Clones (Original Motion Picture Soundtrack)",356293,2002,0.108,0.0463,0.0455,0.835,0.926,0.134,0.0372,63.645,-27.851,"E","minor","E minor"
-2,"Attack of the Clones","Prequel",12,"Love Pledge and the Arena","John Williams","Star Wars: Attack of the Clones (Original Motion Picture Soundtrack)",510186,2002,0.225,0.306,0.0398,0.584,0.859,0.106,0.0537,92.732,-16.153,"D","minor","D minor"
-2,"Attack of the Clones","Prequel",13,"Confrontation with Count Dooku and Finale","John Williams","Star Wars: Attack of the Clones (Original Motion Picture Soundtrack)",645493,2002,0.11,0.173,0.0372,0.773,0.924,0.16,0.0518,86.427,-17.673,"D","minor","D minor"
-3,"Revenge of the Sith","Prequel",1,"Star Wars and the Revenge of the Sith","John Williams","Star Wars: Revenge of the Sith (Original Motion Picture Soundtrack)",449373,2005,0.267,0.405,0.0605,0.377,0.848,0.163,0.21,96.454,-15.683,"F","major","F major"
-3,"Revenge of the Sith","Prequel",2,"Anakin's Dream","John Williams","Star Wars: Revenge of the Sith (Original Motion Picture Soundtrack)",284720,2005,0.138,0.0302,0.0428,0.883,0.918,0.251,0.0376,141.32,-27.728,"E","minor","E minor"
-3,"Revenge of the Sith","Prequel",3,"Battle of the Heroes","John Williams","Star Wars: Revenge of the Sith (Original Motion Picture Soundtrack)",222600,2005,0.174,0.298,0.033,0.783,0.953,0.14,0.133,89.962,-15.017,"C","minor","C minor"
-3,"Revenge of the Sith","Prequel",4,"Anakin's Betrayal","John Williams","Star Wars: Revenge of the Sith (Original Motion Picture Soundtrack)",245320,2005,0.143,0.174,0.0354,0.772,0.925,0.091,0.0385,138.947,-17.379,"A","minor","A minor"
-3,"Revenge of the Sith","Prequel",5,"General Grievous","John Williams","Star Wars: Revenge of the Sith (Original Motion Picture Soundtrack)",245840,2005,0.31,0.45,0.0479,0.41,0.748,0.0959,0.18,156.837,-14.438,"F","minor","F minor"
-3,"Revenge of the Sith","Prequel",6,"Palpatine's Teachings","John Williams","Star Wars: Revenge of the Sith (Original Motion Picture Soundtrack)",325066,2005,0.0655,0.0122,0.0386,0.865,0.954,0.116,0.0366,74.462,-28.627,"C#","minor","C# minor"
-3,"Revenge of the Sith","Prequel",7,"Grievous and the Droids","John Williams","Star Wars: Revenge of the Sith (Original Motion Picture Soundtrack)",207066,2005,0.223,0.406,0.0417,0.525,0.913,0.245,0.124,155.522,-14.605,"G#","major","G# major"
-3,"Revenge of the Sith","Prequel",8,"Padmé's Ruminations","John Williams","Star Wars: Revenge of the Sith (Original Motion Picture Soundtrack)",198000,2005,0.0881,0.0103,0.0464,0.0913,0.889,0.109,0.0321,85.536,-31.523,"D","major","D major"
-3,"Revenge of the Sith","Prequel",9,"Anakin vs. Obi-Wan","John Williams","Star Wars: Revenge of the Sith (Original Motion Picture Soundtrack)",236026,2005,0.324,0.42,0.0359,0.576,0.795,0.116,0.145,92.724,-14.413,"C","major","C major"
-3,"Revenge of the Sith","Prequel",10,"Anakin's Dark Deeds","John Williams","Star Wars: Revenge of the Sith (Original Motion Picture Soundtrack)",244226,2005,0.138,0.152,0.0334,0.823,0.886,0.0963,0.0925,85.779,-15.867,"G","minor","G minor"
-3,"Revenge of the Sith","Prequel",11,"Enter Lord Vader","John Williams","Star Wars: Revenge of the Sith (Original Motion Picture Soundtrack)",253933,2005,0.112,0.143,0.0363,0.746,0.889,0.091,0.0365,78.619,-17.012,"A","minor","A minor"
-3,"Revenge of the Sith","Prequel",12,"The Immolation Scene","John Williams","Star Wars: Revenge of the Sith (Original Motion Picture Soundtrack)",159800,2005,0.0879,0.128,0.0382,0.566,0.932,0.109,0.0398,165.213,-19.652,"B","minor","B minor"
-3,"Revenge of the Sith","Prequel",13,"Grievous Speaks to Lord Sidious","John Williams","Star Wars: Revenge of the Sith (Original Motion Picture Soundtrack)",168053,2005,0.12,0.133,0.0393,0.857,0.867,0.106,0.0616,73.94,-18.955,"E","minor","E minor"
-3,"Revenge of the Sith","Prequel",14,"The Birth of the Twins and Padmé's Destiny","John Williams","Star Wars: Revenge of the Sith (Original Motion Picture Soundtrack)",219693,2005,0.0604,0.147,0.0378,0.925,0.783,0.0744,0.0364,65.247,-18.954,"E","major","E major"
-3,"Revenge of the Sith","Prequel",15,"A New Hope and End Credits","John Williams","Star Wars: Revenge of the Sith (Original Motion Picture Soundtrack)",785373,2005,0.191,0.303,0.0316,0.719,0.929,0.181,0.0901,91.164,-14.137,"C","major","C major"
-7,"The Force Awakens","Sequel",1,"Main Title and The Attack on the Jakku Village","John Williams","Star Wars: The Force Awakens (Original Motion Picture Soundtrack)",385920,2015,0.188,0.314,0.0358,0.838,0.902,0.128,0.0382,84.803,-11.955,"D#","major","D# major"
-7,"The Force Awakens","Sequel",2,"The Scavenger","John Williams","Star Wars: The Force Awakens (Original Motion Picture Soundtrack)",219933,2015,0.212,0.0238,0.0409,0.955,0.965,0.106,0.0375,68.484,-24.511,"E","minor","E minor"
-7,"The Force Awakens","Sequel",3,"I Can Fly Anything","John Williams","Star Wars: The Force Awakens (Original Motion Picture Soundtrack)",190986,2015,0.372,0.328,0.0318,0.822,0.904,0.0959,0.0811,72.802,-11.957,"G","major","G major"
-7,"The Force Awakens","Sequel",4,"Rey Meets BB-8","John Williams","Star Wars: The Force Awakens (Original Motion Picture Soundtrack)",91240,2015,0.0793,0.03,0.0368,0.953,0.585,0.323,0.0371,172.775,-25.662,"D","minor","D minor"
-7,"The Force Awakens","Sequel",5,"Follow Me","John Williams","Star Wars: The Force Awakens (Original Motion Picture Soundtrack)",174826,2015,0.218,0.221,0.0369,0.879,0.807,0.104,0.039,157.701,-13.52,"F#","major","F# major"
-7,"The Force Awakens","Sequel",6,"Rey's Theme","John Williams","Star Wars: The Force Awakens (Original Motion Picture Soundtrack)",191066,2015,0.234,0.139,0.0342,0.975,0.889,0.0814,0.12,102.682,-16.854,"A","minor","A minor"
-7,"The Force Awakens","Sequel",7,"The Falcon","John Williams","Star Wars: The Force Awakens (Original Motion Picture Soundtrack)",212493,2015,0.436,0.473,0.031,0.82,0.738,0.393,0.199,78.505,-11.018,"A#","minor","A# minor"
-7,"The Force Awakens","Sequel",8,"That Girl with the Staff","John Williams","Star Wars: The Force Awakens (Original Motion Picture Soundtrack)",118733,2015,0.0773,0.0288,0.0373,0.934,0.946,0.417,0.0376,70.406,-25.074,"F#","major","F# major"
-7,"The Force Awakens","Sequel",9,"The Rathtars!","John Williams","Star Wars: The Force Awakens (Original Motion Picture Soundtrack)",245520,2015,0.313,0.39,0.0522,0.846,0.863,0.109,0.094,129.331,-12.706,"G","major","G major"
-7,"The Force Awakens","Sequel",10,"Finn's Confession","John Williams","Star Wars: The Force Awakens (Original Motion Picture Soundtrack)",128733,2015,0.214,0.0882,0.0392,0.951,0.932,0.253,0.0372,86.663,-22.076,"E","minor","E minor"
-7,"The Force Awakens","Sequel",11,"Maz's Counsel","John Williams","Star Wars: The Force Awakens (Original Motion Picture Soundtrack)",187853,2015,0.133,0.0133,0.043,0.966,0.741,0.0792,0.0327,74.99,-24.976,"D","minor","D minor"
-7,"The Force Awakens","Sequel",12,"The Starkiller","John Williams","Star Wars: The Force Awakens (Original Motion Picture Soundtrack)",111466,2015,0.169,0.089,0.0436,0.946,0.835,0.0934,0.0301,88.408,-23.308,"A","minor","A minor"
-7,"The Force Awakens","Sequel",13,"Kylo Ren Arrives at the Battle","John Williams","Star Wars: The Force Awakens (Original Motion Picture Soundtrack)",121440,2015,0.242,0.302,0.0522,0.881,0.942,0.136,0.0554,123.185,-14.991,"A","major","A major"
-7,"The Force Awakens","Sequel",14,"The Abduction","John Williams","Star Wars: The Force Awakens (Original Motion Picture Soundtrack)",145293,2015,0.159,0.23,0.033,0.672,0.848,0.0951,0.0632,84.933,-15.441,"D","minor","D minor"
-7,"The Force Awakens","Sequel",15,"Han and Leia","John Williams","Star Wars: The Force Awakens (Original Motion Picture Soundtrack)",281426,2015,0.0836,0.0223,0.0453,0.968,0.948,0.0912,0.0387,170.502,-22.6,"F#","minor","F# minor"
-7,"The Force Awakens","Sequel",16,"March of the Resistance","John Williams","Star Wars: The Force Awakens (Original Motion Picture Soundtrack)",155906,2015,0.608,0.398,0.0295,0.88,0.915,0.144,0.487,101.955,-9.625,"G","minor","G minor"
-7,"The Force Awakens","Sequel",17,"Snoke","John Williams","Star Wars: The Force Awakens (Original Motion Picture Soundtrack)",123013,2015,0.0753,0.00822,0.0416,0.896,0.948,0.117,0.0333,81.373,-38.384,"D","major","D major"
-7,"The Force Awakens","Sequel",18,"On the Inside","John Williams","Star Wars: The Force Awakens (Original Motion Picture Soundtrack)",125960,2015,0.32,0.0802,0.037,0.96,0.882,0.101,0.0357,58.171,-19.48,"F","minor","F minor"
-7,"The Force Awakens","Sequel",19,"Torn Apart","John Williams","Star Wars: The Force Awakens (Original Motion Picture Soundtrack)",259066,2015,0.078,0.128,0.0444,0.921,0.855,0.0725,0.0374,79.208,-14.775,"F#","minor","F# minor"
-7,"The Force Awakens","Sequel",20,"The Ways of the Force","John Williams","Star Wars: The Force Awakens (Original Motion Picture Soundtrack)",194960,2015,0.172,0.307,0.0372,0.871,0.941,0.11,0.0491,77.818,-14.977,"F","minor","F minor"
-7,"The Force Awakens","Sequel",21,"Scherzo for X-Wings","John Williams","Star Wars: The Force Awakens (Original Motion Picture Soundtrack)",152146,2015,0.37,0.431,0.0425,0.787,0.839,0.357,0.327,135.875,-10.02,"D","minor","D minor"
-7,"The Force Awakens","Sequel",22,"Farewell and The Trip","John Williams","Star Wars: The Force Awakens (Original Motion Picture Soundtrack)",295586,2015,0.149,0.117,0.0367,0.961,0.846,0.0884,0.0373,102.437,-16.079,"D","minor","D minor"
-7,"The Force Awakens","Sequel",23,"The Jedi Steps and Finale","John Williams","Star Wars: The Force Awakens (Original Motion Picture Soundtrack)",531586,2015,0.234,0.27,0.0342,0.908,0.941,0.0788,0.0738,134.379,-12.99,"G","minor","G minor"
-8,"The Last Jedi","Sequel",1,"Main Title and Escape","John Williams","Star Wars: The Last Jedi (Original Motion Picture Soundtrack)",445560,2017,0.204,0.445,0.0439,0.709,0.849,0.119,0.0741,148.864,-10.512,"A#","major","A# major"
-8,"The Last Jedi","Sequel",2,"Ahch-To Island","John Williams","Star Wars: The Last Jedi (Original Motion Picture Soundtrack)",262186,2017,0.0616,0.111,0.0406,0.93,0.918,0.0807,0.0376,45.675,-17.688,"G","minor","G minor"
-8,"The Last Jedi","Sequel",3,"Revisiting Snoke","John Williams","Star Wars: The Last Jedi (Original Motion Picture Soundtrack)",208413,2017,0.0798,0.0649,0.0418,0.797,0.687,0.0951,0.0368,170.916,-17.546,"F","major","F major"
-8,"The Last Jedi","Sequel",4,"The Supremacy","John Williams","Star Wars: The Last Jedi (Original Motion Picture Soundtrack)",240080,2017,0.191,0.287,0.0396,0.841,0.834,0.0857,0.0387,142.591,-14.313,"C#","major","C# major"
-8,"The Last Jedi","Sequel",5,"Fun With Finn and Rose","John Williams","Star Wars: The Last Jedi (Original Motion Picture Soundtrack)",153853,2017,0.264,0.0463,0.0354,0.957,0.898,0.118,0.0449,102.604,-27.407,"F","minor","F minor"
-8,"The Last Jedi","Sequel",6,"Old Friends","John Williams","Star Wars: The Last Jedi (Original Motion Picture Soundtrack)",268226,2017,0.0864,0.0629,0.0416,0.868,0.931,0.156,0.0344,85.63,-29.819,"C#","major","C# major"
-8,"The Last Jedi","Sequel",7,"The Rebellion Is Reborn","John Williams","Star Wars: The Last Jedi (Original Motion Picture Soundtrack)",239160,2017,0.228,0.213,0.0366,0.92,0.859,0.103,0.0578,100.786,-15.215,"A#","major","A# major"
-8,"The Last Jedi","Sequel",8,"Lesson One","John Williams","Star Wars: The Last Jedi (Original Motion Picture Soundtrack)",129320,2017,0.0647,0.0675,0.0434,0.94,0.889,0.326,0.104,72.357,-18.226,"C#","minor","C# minor"
-8,"The Last Jedi","Sequel",9,"Canto Bight","John Williams","Star Wars: The Last Jedi (Original Motion Picture Soundtrack)",157600,2017,0.468,0.348,0.0495,0.496,0.00113,0.117,0.305,127.17,-13.454,"D","minor","D minor"
-8,"The Last Jedi","Sequel",10,"Who Are You?","John Williams","Star Wars: The Last Jedi (Original Motion Picture Soundtrack)",184226,2017,0.129,0.0413,0.0372,0.843,0.868,0.138,0.036,75.926,-23.724,"E","minor","E minor"
-8,"The Last Jedi","Sequel",11,"The Fathiers","John Williams","Star Wars: The Last Jedi (Original Motion Picture Soundtrack)",162040,2017,0.341,0.386,0.035,0.769,0.86,0.154,0.317,80.83,-12.703,"A","minor","A minor"
-8,"The Last Jedi","Sequel",12,"The Cave","John Williams","Star Wars: The Last Jedi (Original Motion Picture Soundtrack)",179080,2017,0.166,0.0926,0.0523,0.491,0.872,0.135,0.0268,112.334,-26.193,"F","minor","F minor"
-8,"The Last Jedi","Sequel",13,"The Sacred Jedi Texts","John Williams","Star Wars: The Last Jedi (Original Motion Picture Soundtrack)",212120,2017,0.12,0.0461,0.0365,0.952,0.822,0.342,0.0334,87.813,-18.917,"D","minor","D minor"
-8,"The Last Jedi","Sequel",14,"A New Alliance","John Williams","Star Wars: The Last Jedi (Original Motion Picture Soundtrack)",193186,2017,0.223,0.353,0.0391,0.713,0.842,0.151,0.102,147.98,-12.316,"F","minor","F minor"
-8,"The Last Jedi","Sequel",15,"“Chrome Dome”","John Williams","Star Wars: The Last Jedi (Original Motion Picture Soundtrack)",121613,2017,0.324,0.343,0.0399,0.617,0.867,0.137,0.114,87.608,-12.834,"F#","minor","F# minor"
-8,"The Last Jedi","Sequel",16,"The Battle of Crait","John Williams","Star Wars: The Last Jedi (Original Motion Picture Soundtrack)",407693,2017,0.201,0.449,0.0455,0.764,0.91,0.425,0.0907,74.858,-11.541,"D","major","D major"
-8,"The Last Jedi","Sequel",17,"The Spark","John Williams","Star Wars: The Last Jedi (Original Motion Picture Soundtrack)",215613,2017,0.14,0.0744,0.0356,0.942,0.873,0.0936,0.0347,100.174,-17.275,"F#","major","F# major"
-8,"The Last Jedi","Sequel",18,"The Last Jedi","John Williams","Star Wars: The Last Jedi (Original Motion Picture Soundtrack)",183533,2017,0.0646,0.294,0.0416,0.84,0.914,0.129,0.0528,70.294,-14.03,"A","minor","A minor"
-8,"The Last Jedi","Sequel",19,"Peace and Purpose","John Williams","Star Wars: The Last Jedi (Original Motion Picture Soundtrack)",186133,2017,0.154,0.145,0.0387,0.931,0.929,0.208,0.0396,80.646,-19.186,"D","minor","D minor"
-8,"The Last Jedi","Sequel",20,"Finale","John Williams","Star Wars: The Last Jedi (Original Motion Picture Soundtrack)",508800,2017,0.184,0.296,0.0382,0.881,0.87,0.0838,0.043,76.203,-13.013,"F","major","F major"
-9,"The Rise of Skywalker","Sequel",1,"Fanfare and Prologue","John Williams","Star Wars: The Rise of Skywalker (Original Motion Picture Soundtrack)",274546,2019,0.0783,0.276,0.0401,0.352,0.943,0.165,0.0399,81.606,-13.502,"C","minor","C minor"
-9,"The Rise of Skywalker","Sequel",2,"Journey to Exegol","John Williams","Star Wars: The Rise of Skywalker (Original Motion Picture Soundtrack)",169080,2019,0.253,0.326,0.0419,0.704,0.836,0.156,0.173,128.198,-14.836,"D","major","D major"
-9,"The Rise of Skywalker","Sequel",3,"The Rise of Skywalker","John Williams","Star Wars: The Rise of Skywalker (Original Motion Picture Soundtrack)",258373,2019,0.17,0.152,0.0364,0.927,0.901,0.0854,0.038,82.245,-17.539,"F#","major","F# major"
-9,"The Rise of Skywalker","Sequel",4,"The Old Death Star","John Williams","Star Wars: The Rise of Skywalker (Original Motion Picture Soundtrack)",196893,2019,0.17,0.0894,0.0357,0.781,0.911,0.0847,0.0468,106.673,-17.547,"A#","minor","A# minor"
-9,"The Rise of Skywalker","Sequel",5,"The Speeder Chase","John Williams","Star Wars: The Rise of Skywalker (Original Motion Picture Soundtrack)",201386,2019,0.439,0.348,0.0318,0.805,0.664,0.236,0.13,141.981,-13.44,"E","minor","E minor"
-9,"The Rise of Skywalker","Sequel",6,"Destiny of a Jedi","John Williams","Star Wars: The Rise of Skywalker (Original Motion Picture Soundtrack)",312213,2019,0.0928,0.048,0.0399,0.957,0.927,0.109,0.0365,77.469,-22.645,"B","major","B major"
-9,"The Rise of Skywalker","Sequel",7,"Anthem of Evil","John Williams","Star Wars: The Rise of Skywalker (Original Motion Picture Soundtrack)",203720,2019,0.192,0.0506,0.038,0.955,0.95,0.108,0.0386,109.755,-17.526,"B","minor","B minor"
-9,"The Rise of Skywalker","Sequel",8,"Fleeing from Kijimi","John Williams","Star Wars: The Rise of Skywalker (Original Motion Picture Soundtrack)",171933,2019,0.205,0.188,0.0405,0.913,0.919,0.286,0.0398,143.872,-18.132,"G#","major","G# major"
-9,"The Rise of Skywalker","Sequel",9,"We Go Together","John Williams","Star Wars: The Rise of Skywalker (Original Motion Picture Soundtrack)",197466,2019,0.0715,0.103,0.0411,0.905,0.943,0.0846,0.0413,72.585,-19.08,"D","minor","D minor"
-9,"The Rise of Skywalker","Sequel",10,"Join Me","John Williams","Star Wars: The Rise of Skywalker (Original Motion Picture Soundtrack)",222613,2019,0.0703,0.218,0.0391,0.454,0.907,0.196,0.0375,75.123,-17.489,"B","minor","B minor"
-9,"The Rise of Skywalker","Sequel",11,"They Will Come","John Williams","Star Wars: The Rise of Skywalker (Original Motion Picture Soundtrack)",170280,2019,0.364,0.151,0.033,0.937,0.912,0.114,0.153,101.945,-17.398,"D","minor","D minor"
-9,"The Rise of Skywalker","Sequel",12,"The Final Saber Duel","John Williams","Star Wars: The Rise of Skywalker (Original Motion Picture Soundtrack)",237506,2019,0.137,0.073,0.034,0.843,0.875,0.109,0.0392,43.275,-18.253,"F","minor","F minor"
-9,"The Rise of Skywalker","Sequel",13,"Battle of the Resistance","John Williams","Star Wars: The Rise of Skywalker (Original Motion Picture Soundtrack)",171146,2019,0.233,0.407,0.0659,0.773,0.908,0.402,0.213,58.399,-12.853,"F","minor","F minor"
-9,"The Rise of Skywalker","Sequel",14,"Approaching the Throne","John Williams","Star Wars: The Rise of Skywalker (Original Motion Picture Soundtrack)",256346,2019,0.0806,0.235,0.0369,0.799,0.952,0.101,0.0627,71.782,-16.935,"C","minor","C minor"
-9,"The Rise of Skywalker","Sequel",15,"The Force Is with You","John Williams","Star Wars: The Rise of Skywalker (Original Motion Picture Soundtrack)",239360,2019,0.0813,0.255,0.0382,0.916,0.936,0.101,0.0374,78.925,-15.603,"G","minor","G minor"
-9,"The Rise of Skywalker","Sequel",16,"Farewell","John Williams","Star Wars: The Rise of Skywalker (Original Motion Picture Soundtrack)",314493,2019,0.137,0.102,0.0389,0.922,0.864,0.0978,0.0369,82.41,-17.984,"D","minor","D minor"
-9,"The Rise of Skywalker","Sequel",17,"Reunion","John Williams","Star Wars: The Rise of Skywalker (Original Motion Picture Soundtrack)",244986,2019,0.125,0.187,0.0375,0.868,0.888,0.222,0.0717,80.793,-17.054,"F","major","F major"
-9,"The Rise of Skywalker","Sequel",18,"A New Home","John Williams","Star Wars: The Rise of Skywalker (Original Motion Picture Soundtrack)",107133,2019,0.189,0.0754,0.0388,0.962,0.951,0.0747,0.056,80.715,-19.966,"A#","major","A# major"
-9,"The Rise of Skywalker","Sequel",19,"Finale","John Williams","Star Wars: The Rise of Skywalker (Original Motion Picture Soundtrack)",651826,2019,0.128,0.374,0.0385,0.695,0.912,0.143,0.0701,59.032,-11.184,"G","minor","G minor"
+"","track_name","movie_title","trilogy","danceability","energy","speechiness","acousticness","instrumentalness","liveness","valence"
+"1","Main Title","A New Hope","Original",0.243,0.417,0.0392,0.684,0.912,0.13,0.175
+"2","Imperial Attack","A New Hope","Original",0.168,0.181,0.0358,0.888,0.888,0.0798,0.0377
+"3","Princess Leia's Theme","A New Hope","Original",0.0784,0.0649,0.0425,0.857,0.951,0.0712,0.0308
+"4","The Desert and the Robot Auction","A New Hope","Original",0.271,0.0329,0.0372,0.817,0.871,0.0775,0.054
+"5","Ben's Death and TIE Fighter Attack","A New Hope","Original",0.346,0.322,0.0449,0.759,0.93,0.0931,0.0976
+"6","The Little People Work","A New Hope","Original",0.449,0.0534,0.0332,0.896,0.518,0.216,0.0584
+"7","Rescue of the Princess","A New Hope","Original",0.29,0.361,0.0422,0.798,0.765,0.116,0.139
+"8","Inner City","A New Hope","Original",0.223,0.0757,0.0366,0.849,0.9,0.13,0.0398
+"9","Cantina Band","A New Hope","Original",0.699,0.419,0.134,0.255,0.0239,0.0471,0.822
+"10","The Land of the Sand People","A New Hope","Original",0.299,0.173,0.0522,0.898,0.616,0.123,0.0381
+"11","Mouse Robot and Blasting Off","A New Hope","Original",0.156,0.156,0.038,0.747,0.463,0.172,0.0566
+"12","The Return Home","A New Hope","Original",0.0933,0.131,0.0384,0.859,0.437,0.0761,0.0345
+"13","The Walls Converge","A New Hope","Original",0.197,0.108,0.036,0.859,0.749,0.131,0.0751
+"14","The Princess Appears","A New Hope","Original",0.185,0.0599,0.0428,0.956,0.872,0.125,0.0393
+"15","The Last Battle","A New Hope","Original",0.292,0.249,0.036,0.82,0.836,0.36,0.11
+"16","The Throne Room and End Title","A New Hope","Original",0.297,0.372,0.0331,0.786,0.88,0.0758,0.191
+"17","Star Wars (Main Theme)","The Empire Strikes Back","Original",0.177,0.295,0.061,0.39,0.591,0.0684,0.0825
+"18","Yoda's Theme","The Empire Strikes Back","Original",0.184,0.0529,0.0398,0.718,0.839,0.117,0.0463
+"19","The Training of a Jedi Knight","The Empire Strikes Back","Original",0.235,0.0518,0.0406,0.858,0.821,0.254,0.131
+"20","The Heroics of Luke and Han","The Empire Strikes Back","Original",0.241,0.289,0.04,0.449,0.817,0.158,0.0875
+"21","The Imperial March (Darth Vader's Theme)","The Empire Strikes Back","Original",0.577,0.379,0.0368,0.753,0.955,0.126,0.284
+"22","Departure of Boba Fett","The Empire Strikes Back","Original",0.212,0.237,0.0423,0.776,0.879,0.0998,0.0393
+"23","Han Solo and the Princess","The Empire Strikes Back","Original",0.156,0.0229,0.0368,0.391,0.887,0.0946,0.035
+"24","Hyperspace","The Empire Strikes Back","Original",0.312,0.29,0.0543,0.623,0.901,0.0736,0.149
+"25","The Battle in the Snow","The Empire Strikes Back","Original",0.248,0.547,0.0427,0.536,0.889,0.0941,0.278
+"26","The Asteroid Field","The Empire Strikes Back","Original",0.31,0.379,0.0391,0.391,0.934,0.067,0.155
+"27","The City in the Clouds","The Empire Strikes Back","Original",0.101,0.043,0.0414,0.861,0.617,0.504,0.0353
+"28","Rebels at Bay","The Empire Strikes Back","Original",0.292,0.31,0.0362,0.534,0.924,0.112,0.14
+"29","Yoda and the Force","The Empire Strikes Back","Original",0.161,0.0329,0.0439,0.874,0.784,0.123,0.0368
+"30","The Duel","The Empire Strikes Back","Original",0.156,0.369,0.04,0.798,0.918,0.238,0.0723
+"31","The Magic Tree","The Empire Strikes Back","Original",0.17,0.114,0.047,0.605,0.852,0.263,0.037
+"32","Lando's Palace","The Empire Strikes Back","Original",0.178,0.0366,0.0413,0.856,0.787,0.124,0.0375
+"33","Finale","The Empire Strikes Back","Original",0.22,0.263,0.0338,0.559,0.897,0.371,0.122
+"34","Main Title (The Story Continues)","Return of the Jedi","Original",0.11,0.233,0.0381,0.628,0.81,0.146,0.0797
+"35","Into the Trap","Return of the Jedi","Original",0.43,0.363,0.0606,0.827,0.885,0.108,0.225
+"36","Luke and Leia","Return of the Jedi","Original",0.17,0.0559,0.0402,0.935,0.784,0.118,0.0348
+"37","Parade of the Ewoks","Return of the Jedi","Original",0.451,0.238,0.0425,0.881,0.897,0.109,0.221
+"38","Han Solo Returns (At the Court of Jabba the Hutt)","Return of the Jedi","Original",0.12,0.0841,0.0401,0.908,0.512,0.0743,0.036
+"39","Lapti Nek (Jabba's Palace Band)","Return of the Jedi","Original",0.842,0.56,0.0826,0.136,0.0863,0.09,0.73
+"40","The Forest Battle","Return of the Jedi","Original",0.527,0.484,0.0391,0.83,0.795,0.0956,0.3
+"41","Rebel Briefing","Return of the Jedi","Original",0.145,0.181,0.0442,0.76,0.656,0.102,0.0329
+"42","The Emperor","Return of the Jedi","Original",0.139,0.144,0.0372,0.94,0.965,0.114,0.0368
+"43","The Return of the Jedi","Return of the Jedi","Original",0.246,0.428,0.0379,0.824,0.899,0.133,0.135
+"44","Ewok Celebration and Finale","Return of the Jedi","Original",0.392,0.395,0.0727,0.792,0.797,0.223,0.325
+"45","Star Wars Main Title and the Arrival at Naboo","The Phantom Menace","Prequel",0.127,0.369,0.0392,0.524,0.905,0.165,0.192
+"46","Duel of the Fates","The Phantom Menace","Prequel",0.471,0.411,0.041,0.733,0.853,0.28,0.282
+"47","Anakin's Theme","The Phantom Menace","Prequel",0.186,0.111,0.0505,0.443,0.908,0.24,0.0339
+"48","Jar Jar's Introduction and the Swim to Otoh Gunga","The Phantom Menace","Prequel",0.198,0.052,0.0334,0.93,0.917,0.088,0.0394
+"49","The Sith Spacecraft and the Droid Battle","The Phantom Menace","Prequel",0.313,0.621,0.12,0.49,0.914,0.166,0.256
+"50","The Trip to the Naboo Temple and the Audience with Boss Nass","The Phantom Menace","Prequel",0.224,0.0481,0.0319,0.916,0.864,0.142,0.0453
+"51","The Arrival at Tatooine and the Flag Parade","The Phantom Menace","Prequel",0.277,0.316,0.0432,0.787,0.617,0.137,0.0798
+"52","He Is the Chosen One","The Phantom Menace","Prequel",0.0622,0.034,0.0414,0.941,0.923,0.152,0.0356
+"53","Anakin Defeats Sebulba","The Phantom Menace","Prequel",0.217,0.43,0.0505,0.709,0.704,0.283,0.0962
+"54","Passage Through the Planet Core","The Phantom Menace","Prequel",0.0885,0.0593,0.05,0.777,0.865,0.0447,0.0374
+"55","Watto's Deal and Kids at Play","The Phantom Menace","Prequel",0.182,0.0294,0.0351,0.908,0.904,0.0989,0.0374
+"56","Panaka and the Queen's Protectors","The Phantom Menace","Prequel",0.366,0.481,0.128,0.594,0.695,0.306,0.177
+"57","Queen Amidala and the Naboo Palace","The Phantom Menace","Prequel",0.17,0.0413,0.0384,0.798,0.888,0.0924,0.034
+"58","The Droid Invasion and the Appearance of Darth Maul","The Phantom Menace","Prequel",0.274,0.242,0.0461,0.781,0.874,0.0999,0.0393
+"59","Qui-Gon's Noble End","The Phantom Menace","Prequel",0.289,0.282,0.0475,0.254,0.34,0.108,0.138
+"60","The High Council Meeting and Qui-Gon's Funeral","The Phantom Menace","Prequel",0.077,0.072,0.0396,0.886,0.862,0.113,0.0345
+"61","Augie's Great Municipal Band and End Credits","The Phantom Menace","Prequel",0.217,0.407,0.0812,0.45,0.919,0.235,0.0654
+"62","Star Wars Main Title and Ambush on Coruscant","Attack of the Clones","Prequel",0.0911,0.286,0.0422,0.645,0.944,0.203,0.0515
+"63","Across the Stars (Love Theme from ""Star Wars: Attack of the Clones"")","Attack of the Clones","Prequel",0.116,0.13,0.0355,0.774,0.914,0.111,0.0666
+"64","Zam the Assassin and the Chase Through Coruscant","Attack of the Clones","Prequel",0.424,0.315,0.0526,0.621,0.727,0.112,0.0584
+"65","Yoda and the Younglings","Attack of the Clones","Prequel",0.128,0.00892,0.0419,0.982,0.962,0.107,0.0475
+"66","Departing Coruscant","Attack of the Clones","Prequel",0.125,0.0314,0.0392,0.973,0.957,0.114,0.0383
+"67","Anakin and Padmé","Attack of the Clones","Prequel",0.171,0.0127,0.041,0.979,0.945,0.0985,0.038
+"68","Jango's Escape","Attack of the Clones","Prequel",0.353,0.394,0.0393,0.725,0.919,0.116,0.195
+"69","The Meadow Picnic","Attack of the Clones","Prequel",0.145,0.0669,0.0384,0.874,0.836,0.098,0.0595
+"70","Bounty Hunter's Pursuit","Attack of the Clones","Prequel",0.164,0.109,0.041,0.789,0.867,0.0812,0.0392
+"71","Return to Tatooine","Attack of the Clones","Prequel",0.0844,0.0501,0.0371,0.87,0.94,0.095,0.0361
+"72","The Tusken Camp and the Homestead","Attack of the Clones","Prequel",0.108,0.0463,0.0455,0.835,0.926,0.134,0.0372
+"73","Love Pledge and the Arena","Attack of the Clones","Prequel",0.225,0.306,0.0398,0.584,0.859,0.106,0.0537
+"74","Confrontation with Count Dooku and Finale","Attack of the Clones","Prequel",0.11,0.173,0.0372,0.773,0.924,0.16,0.0518
+"75","Star Wars and the Revenge of the Sith","Revenge of the Sith","Prequel",0.267,0.405,0.0605,0.377,0.848,0.163,0.21
+"76","Anakin's Dream","Revenge of the Sith","Prequel",0.138,0.0302,0.0428,0.883,0.918,0.251,0.0376
+"77","Battle of the Heroes","Revenge of the Sith","Prequel",0.174,0.298,0.033,0.783,0.953,0.14,0.133
+"78","Anakin's Betrayal","Revenge of the Sith","Prequel",0.143,0.174,0.0354,0.772,0.925,0.091,0.0385
+"79","General Grievous","Revenge of the Sith","Prequel",0.31,0.45,0.0479,0.41,0.748,0.0959,0.18
+"80","Palpatine's Teachings","Revenge of the Sith","Prequel",0.0655,0.0122,0.0386,0.865,0.954,0.116,0.0366
+"81","Grievous and the Droids","Revenge of the Sith","Prequel",0.223,0.406,0.0417,0.525,0.913,0.245,0.124
+"82","Padmé's Ruminations","Revenge of the Sith","Prequel",0.0881,0.0103,0.0464,0.0913,0.889,0.109,0.0321
+"83","Anakin vs. Obi-Wan","Revenge of the Sith","Prequel",0.324,0.42,0.0359,0.576,0.795,0.116,0.145
+"84","Anakin's Dark Deeds","Revenge of the Sith","Prequel",0.138,0.152,0.0334,0.823,0.886,0.0963,0.0925
+"85","Enter Lord Vader","Revenge of the Sith","Prequel",0.112,0.143,0.0363,0.746,0.889,0.091,0.0365
+"86","The Immolation Scene","Revenge of the Sith","Prequel",0.0879,0.128,0.0382,0.566,0.932,0.109,0.0398
+"87","Grievous Speaks to Lord Sidious","Revenge of the Sith","Prequel",0.12,0.133,0.0393,0.857,0.867,0.106,0.0616
+"88","The Birth of the Twins and Padmé's Destiny","Revenge of the Sith","Prequel",0.0604,0.147,0.0378,0.925,0.783,0.0744,0.0364
+"89","A New Hope and End Credits","Revenge of the Sith","Prequel",0.191,0.303,0.0316,0.719,0.929,0.181,0.0901
+"90","Main Title and The Attack on the Jakku Village","The Force Awakens","Sequel",0.188,0.314,0.0358,0.838,0.902,0.128,0.0382
+"91","The Scavenger","The Force Awakens","Sequel",0.212,0.0238,0.0409,0.955,0.965,0.106,0.0375
+"92","I Can Fly Anything","The Force Awakens","Sequel",0.372,0.328,0.0318,0.822,0.904,0.0959,0.0811
+"93","Rey Meets BB-8","The Force Awakens","Sequel",0.0793,0.03,0.0368,0.953,0.585,0.323,0.0371
+"94","Follow Me","The Force Awakens","Sequel",0.218,0.221,0.0369,0.879,0.807,0.104,0.039
+"95","Rey's Theme","The Force Awakens","Sequel",0.234,0.139,0.0342,0.975,0.889,0.0814,0.12
+"96","The Falcon","The Force Awakens","Sequel",0.436,0.473,0.031,0.82,0.738,0.393,0.199
+"97","That Girl with the Staff","The Force Awakens","Sequel",0.0773,0.0288,0.0373,0.934,0.946,0.417,0.0376
+"98","The Rathtars!","The Force Awakens","Sequel",0.313,0.39,0.0522,0.846,0.863,0.109,0.094
+"99","Finn's Confession","The Force Awakens","Sequel",0.214,0.0882,0.0392,0.951,0.932,0.253,0.0372
+"100","Maz's Counsel","The Force Awakens","Sequel",0.133,0.0133,0.043,0.966,0.741,0.0792,0.0327
+"101","The Starkiller","The Force Awakens","Sequel",0.169,0.089,0.0436,0.946,0.835,0.0934,0.0301
+"102","Kylo Ren Arrives at the Battle","The Force Awakens","Sequel",0.242,0.302,0.0522,0.881,0.942,0.136,0.0554
+"103","The Abduction","The Force Awakens","Sequel",0.159,0.23,0.033,0.672,0.848,0.0951,0.0632
+"104","Han and Leia","The Force Awakens","Sequel",0.0836,0.0223,0.0453,0.968,0.948,0.0912,0.0387
+"105","March of the Resistance","The Force Awakens","Sequel",0.608,0.398,0.0295,0.88,0.915,0.144,0.487
+"106","Snoke","The Force Awakens","Sequel",0.0753,0.00822,0.0416,0.896,0.948,0.117,0.0333
+"107","On the Inside","The Force Awakens","Sequel",0.32,0.0802,0.037,0.96,0.882,0.101,0.0357
+"108","Torn Apart","The Force Awakens","Sequel",0.078,0.128,0.0444,0.921,0.855,0.0725,0.0374
+"109","The Ways of the Force","The Force Awakens","Sequel",0.172,0.307,0.0372,0.871,0.941,0.11,0.0491
+"110","Scherzo for X-Wings","The Force Awakens","Sequel",0.37,0.431,0.0425,0.787,0.839,0.357,0.327
+"111","Farewell and The Trip","The Force Awakens","Sequel",0.149,0.117,0.0367,0.961,0.846,0.0884,0.0373
+"112","The Jedi Steps and Finale","The Force Awakens","Sequel",0.234,0.27,0.0342,0.908,0.941,0.0788,0.0738
+"113","Main Title and Escape","The Last Jedi","Sequel",0.204,0.445,0.0439,0.709,0.849,0.119,0.0741
+"114","Ahch-To Island","The Last Jedi","Sequel",0.0616,0.111,0.0406,0.93,0.918,0.0807,0.0376
+"115","Revisiting Snoke","The Last Jedi","Sequel",0.0798,0.0649,0.0418,0.797,0.687,0.0951,0.0368
+"116","The Supremacy","The Last Jedi","Sequel",0.191,0.287,0.0396,0.841,0.834,0.0857,0.0387
+"117","Fun With Finn and Rose","The Last Jedi","Sequel",0.264,0.0463,0.0354,0.957,0.898,0.118,0.0449
+"118","Old Friends","The Last Jedi","Sequel",0.0864,0.0629,0.0416,0.868,0.931,0.156,0.0344
+"119","The Rebellion Is Reborn","The Last Jedi","Sequel",0.228,0.213,0.0366,0.92,0.859,0.103,0.0578
+"120","Lesson One","The Last Jedi","Sequel",0.0647,0.0675,0.0434,0.94,0.889,0.326,0.104
+"121","Canto Bight","The Last Jedi","Sequel",0.468,0.348,0.0495,0.496,0.00113,0.117,0.305
+"122","Who Are You?","The Last Jedi","Sequel",0.129,0.0413,0.0372,0.843,0.868,0.138,0.036
+"123","The Fathiers","The Last Jedi","Sequel",0.341,0.386,0.035,0.769,0.86,0.154,0.317
+"124","The Cave","The Last Jedi","Sequel",0.166,0.0926,0.0523,0.491,0.872,0.135,0.0268
+"125","The Sacred Jedi Texts","The Last Jedi","Sequel",0.12,0.0461,0.0365,0.952,0.822,0.342,0.0334
+"126","A New Alliance","The Last Jedi","Sequel",0.223,0.353,0.0391,0.713,0.842,0.151,0.102
+"127","“Chrome Dome”","The Last Jedi","Sequel",0.324,0.343,0.0399,0.617,0.867,0.137,0.114
+"128","The Battle of Crait","The Last Jedi","Sequel",0.201,0.449,0.0455,0.764,0.91,0.425,0.0907
+"129","The Spark","The Last Jedi","Sequel",0.14,0.0744,0.0356,0.942,0.873,0.0936,0.0347
+"130","The Last Jedi","The Last Jedi","Sequel",0.0646,0.294,0.0416,0.84,0.914,0.129,0.0528
+"131","Peace and Purpose","The Last Jedi","Sequel",0.154,0.145,0.0387,0.931,0.929,0.208,0.0396
+"132","Finale","The Last Jedi","Sequel",0.184,0.296,0.0382,0.881,0.87,0.0838,0.043
+"133","Fanfare and Prologue","The Rise of Skywalker","Sequel",0.0783,0.276,0.0401,0.352,0.943,0.165,0.0399
+"134","Journey to Exegol","The Rise of Skywalker","Sequel",0.253,0.326,0.0419,0.704,0.836,0.156,0.173
+"135","The Rise of Skywalker","The Rise of Skywalker","Sequel",0.17,0.152,0.0364,0.927,0.901,0.0854,0.038
+"136","The Old Death Star","The Rise of Skywalker","Sequel",0.17,0.0894,0.0357,0.781,0.911,0.0847,0.0468
+"137","The Speeder Chase","The Rise of Skywalker","Sequel",0.439,0.348,0.0318,0.805,0.664,0.236,0.13
+"138","Destiny of a Jedi","The Rise of Skywalker","Sequel",0.0928,0.048,0.0399,0.957,0.927,0.109,0.0365
+"139","Anthem of Evil","The Rise of Skywalker","Sequel",0.192,0.0506,0.038,0.955,0.95,0.108,0.0386
+"140","Fleeing from Kijimi","The Rise of Skywalker","Sequel",0.205,0.188,0.0405,0.913,0.919,0.286,0.0398
+"141","We Go Together","The Rise of Skywalker","Sequel",0.0715,0.103,0.0411,0.905,0.943,0.0846,0.0413
+"142","Join Me","The Rise of Skywalker","Sequel",0.0703,0.218,0.0391,0.454,0.907,0.196,0.0375
+"143","They Will Come","The Rise of Skywalker","Sequel",0.364,0.151,0.033,0.937,0.912,0.114,0.153
+"144","The Final Saber Duel","The Rise of Skywalker","Sequel",0.137,0.073,0.034,0.843,0.875,0.109,0.0392
+"145","Battle of the Resistance","The Rise of Skywalker","Sequel",0.233,0.407,0.0659,0.773,0.908,0.402,0.213
+"146","Approaching the Throne","The Rise of Skywalker","Sequel",0.0806,0.235,0.0369,0.799,0.952,0.101,0.0627
+"147","The Force Is with You","The Rise of Skywalker","Sequel",0.0813,0.255,0.0382,0.916,0.936,0.101,0.0374
+"148","Farewell","The Rise of Skywalker","Sequel",0.137,0.102,0.0389,0.922,0.864,0.0978,0.0369
+"149","Reunion","The Rise of Skywalker","Sequel",0.125,0.187,0.0375,0.868,0.888,0.222,0.0717
+"150","A New Home","The Rise of Skywalker","Sequel",0.189,0.0754,0.0388,0.962,0.951,0.0747,0.056
+"151","Finale","The Rise of Skywalker","Sequel",0.128,0.374,0.0385,0.695,0.912,0.143,0.0701
